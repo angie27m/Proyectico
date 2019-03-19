@@ -1,0 +1,16 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Tienda/MasterAdmin.master" AutoEventWireup="true" CodeFile="~/Controller/Tienda/VerPedidos.aspx.cs" Inherits="View_Tienda_VerPedidos" %>
+
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <!--
+    <CR:CrystalReportSource ID="CRS_Pedidos" runat="server">
+    <Report FileName="~\View\Reportes\ReportePedidos.rpt">
+    </Report>
+</CR:CrystalReportSource>
+<CR:CrystalReportViewer ID="CRV_Pedidos" runat="server" AutoDataBind="true" ReportSourceID="CrystalReportSource1" ToolPanelView="None" />
+        -->
+</asp:Content>
+
