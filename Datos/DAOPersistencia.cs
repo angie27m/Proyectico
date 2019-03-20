@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class DAOPersistencia 
+    public class DAOPersistencia
     {
         public List<Sede> traerSedes()
         {
@@ -18,23 +18,36 @@ namespace Datos
             }
         }
 
-        public void AgregarSede(Sede sede)
+        public bool AgregarSede(Sede sede)
         {
             using (var db = new Mapeo())
             {
-                db.Sedes.Add(sede);
-                db.SaveChanges();
-            }
+                int resultado = db.Sedes.Where(x => x.NombreSede == sede.NombreSede && x.Ciudad == sede.Ciudad).Count();
+                if (resultado == 0)
+                {
+                    db.Sedes.Add(sede);
+                    db.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
 
+            }
         }
 
         public void EliminarSede(int idSede)
         {
             using (var db = new Mapeo())
             {
-                
+                var entities = (from p in db.Sedes
+                                where p.IdSede == idSede
+                                select p).Single();
+                db.Sedes.Remove(entities);
+                db.SaveChanges();
             }
-
         }
     }
+        
 }

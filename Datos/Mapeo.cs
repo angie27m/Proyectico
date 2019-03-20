@@ -17,7 +17,6 @@ namespace Datos
         protected override void OnModelCreating(DbModelBuilder builder)
         {
             builder.HasDefaultSchema("tienda");
-
             base.OnModelCreating(builder);
         }
     }

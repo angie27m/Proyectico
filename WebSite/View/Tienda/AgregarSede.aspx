@@ -61,20 +61,13 @@
                             <Columns>
                                 <asp:TemplateField ShowHeader="False" HeaderText="Eliminar">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="LB_Eliminar0" runat="server" CausesValidation="False" CommandName="Delete" Text="Eliminar" CommandArgument='<%# Bind("idsede") %>'></asp:LinkButton>
+                                        <asp:LinkButton ID="LB_Eliminar0" runat="server" CausesValidation="False" CommandName="Delete" Text="Eliminar" CommandArgument='<%# Bind("Idsede") %>'></asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:BoundField DataField="nombresede" HeaderText="Nombre Sede" />
-                                <asp:BoundField DataField="ciudad" HeaderText="Ciudad" />
-                                <asp:TemplateField HeaderText="Direccion">
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("direccion") %>'></asp:TextBox>
-                                    </EditItemTemplate>
-                                    <ItemTemplate>
-                                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("direccion") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:BoundField DataField="idsede" HeaderText="ID" />
+                                <asp:BoundField DataField="NombreSede" HeaderText="Nombre Sede" />
+                                <asp:BoundField DataField="Ciudad" HeaderText="Ciudad" />
+                                <asp:BoundField DataField="Direccion" HeaderText="Direccion" />                                                                
+                                
                             </Columns>
                             <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />
                             <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />

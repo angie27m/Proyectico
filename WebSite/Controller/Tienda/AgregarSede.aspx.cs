@@ -1,28 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using Logica;
+using Utilitarios;
 using System.Collections;
 
 public partial class View_Tienda_AgregarSede : System.Web.UI.Page
 {
     string accion;    
     Sede sedes = new Sede();
-    DataTable sd = new DataTable();
+    List<Sede> sd = new List<Sede>();
     int CONSTANTE = 4;
     Hashtable compIdioma = new Hashtable();
    
     protected void Page_Load(object sender, EventArgs e)
     {
-        AgregarSede0 a = new AgregarSede0(Session["idioma"].ToString());
+        /*AgregarSede0 a = new AgregarSede0(Session["idioma"].ToString());*/
         llenarGV_Sedes();
+        /*
         compIdioma = a.paraIdioma(Session["idioma"].ToString(), CONSTANTE);
         L_Nombre_Sede.Text = compIdioma[L_Nombre_Sede.ID].ToString();
         L_Ciudad.Text = compIdioma[L_Ciudad.ID].ToString();
@@ -32,7 +28,7 @@ public partial class View_Tienda_AgregarSede : System.Web.UI.Page
         GV_Sedes.HeaderRow.Cells[1].Text = compIdioma["GV_Sedes_Column1"].ToString();
         GV_Sedes.HeaderRow.Cells[2].Text = compIdioma["GV_Sedes_Column2"].ToString();
         GV_Sedes.HeaderRow.Cells[3].Text = compIdioma["GV_Sedes_Column3"].ToString();
-
+        */
     }
 
     protected void B_AgregarSede_Click(object sender, EventArgs e)
@@ -58,15 +54,16 @@ public partial class View_Tienda_AgregarSede : System.Web.UI.Page
 
     void llenarGV_Sedes()
     {
-        AgregarSede0 data = new AgregarSede0(Session["idioma"].ToString());
-        sd = data.traeSedes();
+        //AgregarSede0 data = new AgregarSede0(Session["idioma"].ToString());
+        AgregarSede0 data1 = new AgregarSede0();
+        sd = data1.traerSedes();
         GV_Sedes.DataSource = sd;
         GV_Sedes.DataBind();
     }
 
     protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        AgregarSede0 elimi = new AgregarSede0(false, false, null, null, null, null, null);
+        AgregarSede0 elimi = new AgregarSede0();
         elimi.eliminarSede(e.CommandName, int.Parse(e.CommandArgument.ToString()));
         llenarGV_Sedes();
     }
@@ -78,8 +75,8 @@ public partial class View_Tienda_AgregarSede : System.Web.UI.Page
 
     protected void GV_Sedes_RowDataBound(object sender, GridViewRowEventArgs e)
     {
-        AgregarSede0 a = new AgregarSede0(Session["idioma"].ToString());
-        compIdioma = a.paraIdioma(Session["idioma"].ToString(), CONSTANTE);
+        //AgregarSede0 a = new AgregarSede0(Session["idioma"].ToString());
+        /*compIdioma = a.paraIdioma(Session["idioma"].ToString(), CONSTANTE);
         try
         {
             ((LinkButton)e.Row.FindControl("LB_Eliminar0")).Text = compIdioma["LB_Eliminar0"].ToString();
@@ -87,6 +84,6 @@ public partial class View_Tienda_AgregarSede : System.Web.UI.Page
         catch (Exception exe)
         {
 
-        }
+        }*/
     }
 }

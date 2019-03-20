@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using Datos;
 using System.Collections;
@@ -20,12 +17,13 @@ namespace Logica
         bool resultadoSede, resultadoCiudad;
         string msj1, msj2, msj3, msj4, msj5;
         string idioma;
+
         public AgregarSede0()
         {
 
         }
 
-        public AgregarSede0(string idioma)
+        /*public AgregarSede0(string idioma)
         {
             this.idioma = idioma;
             mensajesTrad(idioma, 2);
@@ -34,7 +32,7 @@ namespace Logica
             msj3 = compIdiomaa["3"].ToString();
             msj4 = compIdiomaa["4"].ToString();
             msj5 = compIdiomaa["5"].ToString();
-        }
+        }*/
         public AgregarSede0(bool resultadoSede, bool resultadoCiudad, string nombresede, string ciudad, string direccion, string accion, string idioma)
         {
             this.idioma = idioma;
@@ -57,16 +55,26 @@ namespace Logica
                 mensaje = hacertodoagregar();
             }
         }
-
+/// <summary>
+/// Persistencia
+/// </summary>
         public List<Sede> traerSedes()
         {
             return new DAOPersistencia().traerSedes();
         }
 
-        public void agregar(Sede sede)
+        public bool agregar(Sede sede)
         {
-            new DAOPersistencia().AgregarSede(sede);
+            return new DAOPersistencia().AgregarSede(sede);
         }
+
+        public void eliminarSede(int id)
+        {
+            new DAOPersistencia().EliminarSede(id);
+        }
+
+/// <returns>Persistencia</returns>
+
 
         public string hacertodoagregar() { 
             if (validarLlenoSede() == true)
@@ -82,39 +90,36 @@ namespace Logica
                         sede.Ciudad = ciudad;
                         sede.Direccion = direccion;
                         sede.Estado = "true";
-                        this.agregar(sede);
-                        /*
-                        if (dAO.crearSede(sede) == true)
+                        bool exit = this.agregar(sede);
+                        ciudad = "";
+                        nombresede = "";
+                        direccion = "";
+                        if (exit == true)
                         {
                            mensaje = msj1;
+                            return mensaje;
                         }
                         else
                         {
                             dAO.editarAgregarSedeNuevamente(sede.NombreSede, sede.Ciudad);
                             mensaje = msj2;
                             return mensaje;
-                        };*/
-
-                        ciudad = "";
-                        nombresede = "";
-                        direccion = "";
-                        //GridView1.DataBind();
+                        };                                            
                     }
                     else
                     {
-                       mensaje =msj3;
+                       return mensaje =msj3;
                     }
                 }
                 else
                 {
-                    mensaje = msj4;
+                    return mensaje = msj4;
                 }
             }
             else
             {
-                mensaje = msj5;
-            }
-            return mensaje;
+                return mensaje = msj5;
+            }            
         }
 
         bool validarLlenoSede()
@@ -138,16 +143,12 @@ namespace Logica
         {
             if (comandName==("Delete"))
             {
-                DAOUsuario dAO = new DAOUsuario();
-                int id = Convert.ToInt32(comandArgument);
-                dAO.eliminarSede(id);
+                
+                 Convert.ToInt32(comandArgument);
+                
             }
         }
 
-        public DataTable traeSedes()
-        {
-            return dao.traerSedes();
-        }
         
         public Hashtable paraIdioma(string idioma, int constante)
         {

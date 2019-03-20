@@ -4,14 +4,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Utilitarios;
 
 namespace Logica
-{
-    
+{    
     public class AgregarProductos
     {
         DataTable comp = new DataTable();
@@ -39,12 +35,10 @@ namespace Logica
             msj14 = compIdioma["14"].ToString();
             msj15 = compIdioma["15"].ToString();
             msj16 = compIdioma["16"].ToString();
-        }
-        
+        }        
 
         public List<Producto> AnalizarGridView(string cantidad, string talla, string refPro, string sede, List<Producto> listaVenta)
-        {
-            
+        {            
             DAOUsuario dAO = new DAOUsuario();
             int cont = 0;
             
