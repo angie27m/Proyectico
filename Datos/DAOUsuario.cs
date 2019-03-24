@@ -2598,7 +2598,7 @@ namespace Datos
         }
         public DataTable traerMensajes(int idioma, int clase)
         {
-            DataTable componentes = new DataTable();
+            DataTable mensajes = new DataTable();
             NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
 
             try
@@ -2608,7 +2608,7 @@ namespace Datos
                 dataAdapter.SelectCommand.Parameters.Add("_idioma", NpgsqlDbType.Integer).Value = idioma;
                 dataAdapter.SelectCommand.Parameters.Add("_kclase", NpgsqlDbType.Integer).Value = clase;
                 conection.Open();
-                dataAdapter.Fill(componentes);
+                dataAdapter.Fill(mensajes);
             }
             catch (Exception Ex)
             {
@@ -2621,9 +2621,214 @@ namespace Datos
                     conection.Close();
                 }
             }
-            return componentes;
+            return mensajes;
+        }
+
+        public DataTable traerTodosComponentesUnIdioma(int idioma)
+        {
+            DataTable todosComp = new DataTable();
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+            try
+            {
+                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("traduccion.f_filtrar_todos_comp_solo_idioma", conection);
+                dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                dataAdapter.SelectCommand.Parameters.Add("_idioma", NpgsqlDbType.Integer).Value = idioma;
+                conection.Open();
+                dataAdapter.Fill(todosComp);
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
+            }
+            return todosComp;
+        }
+        public void crearIdioma(int id, string nombre, string terminacion)
+        {
+            DataTable a = new DataTable();
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+            try
+            {
+                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("traduccion.f_crear_idioma", conection);
+                dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+                dataAdapter.SelectCommand.Parameters.Add("_nombre", NpgsqlDbType.Varchar).Value = nombre;
+                dataAdapter.SelectCommand.Parameters.Add("_terminacion", NpgsqlDbType.Varchar).Value = terminacion;
+                conection.Open();
+                dataAdapter.Fill(a);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
+            }
+        }
+        public DataTable traerUltimoIDComp()
+        {
+            DataTable ul = new DataTable();
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+            try
+            {
+                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("traduccion.f_utimo_id", conection);
+                dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                conection.Open();
+                dataAdapter.Fill(ul);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
+            }
+            return ul;
+        }
+        public DataTable traerUltimoIDIdi()
+        {
+            DataTable ul = new DataTable();
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+            try
+            {
+                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("traduccion.f_ultimo_id_idi", conection);
+                dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                conection.Open();
+                dataAdapter.Fill(ul);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
+            }
+            return ul;
+        }
+        public void crearComponente(int id, int formularioId, int idiomaId, string control)
+        {
+            DataTable a = new DataTable();
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+            try
+            {
+                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("traduccion.f_crear_componente", conection);
+                dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+                dataAdapter.SelectCommand.Parameters.Add("_formulario_id", NpgsqlDbType.Integer).Value = formularioId;
+                dataAdapter.SelectCommand.Parameters.Add("_idioma_id", NpgsqlDbType.Integer).Value = idiomaId;
+                dataAdapter.SelectCommand.Parameters.Add("_control", NpgsqlDbType.Varchar).Value = control;
+                conection.Open();
+                dataAdapter.Fill(a);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
+            }
+        }
+        public void ActualizarIdioma(int idIdioma, string control, string texto)
+        {
+            DataTable a = new DataTable();
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+            try
+            {
+                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("traduccion.f_actualizar_texto", conection);
+                dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                dataAdapter.SelectCommand.Parameters.Add("_idioma_id", NpgsqlDbType.Integer).Value = idIdioma;
+                dataAdapter.SelectCommand.Parameters.Add("_control", NpgsqlDbType.Varchar).Value = control;
+                dataAdapter.SelectCommand.Parameters.Add("_texto", NpgsqlDbType.Varchar).Value = texto;
+                conection.Open();
+                dataAdapter.Fill(a);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
+            }
+        }
+        public DataTable traerTodosMensajesUnIdioma(int idioma)
+        {
+            DataTable todosMensajes = new DataTable();
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+            try
+            {
+                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("traduccion.f_filtrar_todos_mensajes_solo_idioma", conection);
+                dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                dataAdapter.SelectCommand.Parameters.Add("_idioma", NpgsqlDbType.Integer).Value = idioma;
+                conection.Open();
+                dataAdapter.Fill(todosMensajes);
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
+            }
+            return todosMensajes;
+        }
+        public DataTable traerUltimoIDMen()
+        {
+            DataTable ul = new DataTable();
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+            try
+            {
+                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("traduccion.f_ultimo_id_mensajes", conection);
+                dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                conection.Open();
+                dataAdapter.Fill(ul);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
+            }
+            return ul;
         }
     }
 
-    
+
 }
+

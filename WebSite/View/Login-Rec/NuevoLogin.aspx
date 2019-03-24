@@ -43,6 +43,10 @@
             background-color: #FFFFFF;
             height: 28px;
         }
+        .auto-style12 {
+            background-color: #FFFFFF;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -99,7 +103,9 @@
                 </tr>
                 <tr>
                     <td class="auto-style4">&nbsp;</td>
-                    <td class="auto-style7">&nbsp;</td>
+                    <td class="auto-style12">
+                        <asp:Button ID="B_Volver" runat="server" OnClick="B_Volver_Click" Text="&lt;-" />
+                    </td>
                 </tr>
                 <tr>
                     <td class="auto-style4">&nbsp;</td>

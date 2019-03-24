@@ -10,17 +10,13 @@ using Logica;
 
 public partial class View_Login_Rec_Idioma : System.Web.UI.Page
 {
+    Idioma a = new Idioma();
     protected void Page_Load(object sender, EventArgs e)
     {
-        //Example ge = new Example();
-        
-
-        //if (!IsPostBack)
-        //{
-           // DDL_Idioma.Items.Add("Seleccione un idioma -- Choose a language");
-            DDL_Idioma.Items.Add("Español");
-            DDL_Idioma.Items.Add("English");
-        //}
+        if (!IsPostBack)
+        {
+            llenar();
+        }
     }
 
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
@@ -32,5 +28,10 @@ public partial class View_Login_Rec_Idioma : System.Web.UI.Page
     {
         Session["idioma"] = DDL_Idioma.SelectedItem.ToString();
         Response.Redirect("~/View/Login-Rec/NuevoLogin.aspx");
+    }
+    public void llenar()
+    {
+        DDL_Idioma.DataSource = a.llenarDDL();
+        DDL_Idioma.DataBind();
     }
 }

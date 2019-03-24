@@ -119,12 +119,11 @@
                         <tr>
                             <td class="auto-style10">
                                 <asp:Button ID="B_CerrarSesion" runat="server" Text="CERRAR SESIÓN" OnClick="B_CerrarSesion_Click" Width="120px" />
+                                <ajaxToolkit:CollapsiblePanelExtender ID="CollapsiblePanelExtender1" runat="server" CollapseControlID="Panel1" CollapsedSize="0" ExpandedSize="250" ExpandControlID="Button1" ExpandDirection="Horizontal" />
                             </td>
                         </tr>
                     </table>
                 </asp:Panel>
-                <ajaxToolkit:CollapsiblePanelExtender ID="Panel1_CollapsiblePanelExtender" runat="server" BehaviorID="Panel1_CollapsiblePanelExtender" CollapsedSize="0" ExpandDirection="Horizontal" ExpandedSize="250" TargetControlID="Panel1" ExpandControlID="Button1" CollapseControlID="Button1" Collapsed="True">
-                </ajaxToolkit:CollapsiblePanelExtender>
             </td>
             <td class="auto-style14">
                     <asp:Label ID="Label3" runat="server" Font-Bold="False" Font-Names="Papyrus" ForeColor="White" Text="SCA"></asp:Label>

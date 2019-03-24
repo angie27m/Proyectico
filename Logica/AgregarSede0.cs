@@ -176,13 +176,14 @@ namespace Logica
         {
             DataTable comp = new DataTable();
             DAOUsuario dAO = new DAOUsuario();
-            if (idiomaa == "Español")
+            DataTable idi = new DataTable();
+            idi = dAO.traerIdioma();
+            for (int i = 0; i < idi.Rows.Count; i++)
             {
-                kIdiomaa = 1;
-            }
-            else if (idiomaa == "English")
-            {
-                kIdiomaa = 2;
+                if (idi.Rows[i]["nombre"].ToString().ToLower() == idioma.ToLower())
+                {
+                    kIdioma = int.Parse(idi.Rows[i]["id"].ToString());
+                }
             }
             comp = dAO.traerMensajes(kIdiomaa, constantea);
             for (int i = 0; i < comp.Rows.Count; i++)

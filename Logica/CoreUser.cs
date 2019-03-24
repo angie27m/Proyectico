@@ -55,13 +55,14 @@ namespace Logica
         public void mensajesTrad(string idioma, int constante)
         {
 
-            if (idioma == "Español")
+            DataTable idi = new DataTable();
+            idi = dAO.traerIdioma();
+            for (int i = 0; i < idi.Rows.Count; i++)
             {
-                kIdioma = 1;
-            }
-            else if (idioma == "English")
-            {
-                kIdioma = 2;
+                if (idi.Rows[i]["nombre"].ToString().ToLower() == idioma.ToLower())
+                {
+                    kIdioma = int.Parse(idi.Rows[i]["id"].ToString());
+                }
             }
             comp = dAO.traerMensajes(kIdioma, constante);
             for (int i = 0; i < comp.Rows.Count; i++)

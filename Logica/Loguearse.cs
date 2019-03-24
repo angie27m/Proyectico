@@ -72,29 +72,31 @@ namespace Logica
         {
             DataTable comp = new DataTable();
 
-            if (idioma == "Español")
+            DataTable idi = new DataTable();
+            idi = dao.traerIdioma();
+            for (int i = 0; i < idi.Rows.Count; i++)
             {
-                kIdioma = 1;
-            }
-            else if (idioma == "English")
-            {
-                kIdioma = 2;
+                if (idi.Rows[i]["nombre"].ToString().ToLower() == idioma.ToLower())
+                {
+                    kIdioma = int.Parse(idi.Rows[i]["id"].ToString());
+                }
             }
             comp = dao.traerComponentes(kIdioma, constante);
             return comp;
         }
 
-        int kIdiomaa;
+        int kIdiomaa=0;
         public void mensajesTrad(string idioma, int constante)
         {
             DataTable comp = new DataTable();
-            if (idioma == "Español")
+            DataTable idi = new DataTable();
+            idi = dao.traerIdioma();
+            for (int i = 0; i < idi.Rows.Count; i++)
             {
-                kIdiomaa = 1;
-            }
-            else if (idioma == "English")
-            {
-                kIdiomaa = 2;
+                if (idi.Rows[i]["nombre"].ToString().ToLower() == idioma.ToLower())
+                {
+                    kIdiomaa = int.Parse(idi.Rows[i]["id"].ToString());
+                }
             }
             comp = dao.traerMensajes(kIdiomaa, constante);
             for (int i = 0; i < comp.Rows.Count; i++)

@@ -63,4 +63,9 @@ public partial class View_NuevoLogin : System.Web.UI.Page
         Session["rol_id"] = null;
         Response.Cache.SetNoStore();
     }
+
+    protected void B_Volver_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/View/Login-Rec/Idioma.aspx");
+    }
 }

@@ -115,7 +115,8 @@
                         </tr>
                         <tr>
                             <td class="auto-style5">
-                                &nbsp;</td>
+                                <asp:LinkButton ID="LB_Idioma" runat="server" Font-Names="Engravers MT" Font-Size="Large" ForeColor="Black" OnClick="LinkButton6_Click" CssClass="auto-style10">Idioma </asp:LinkButton>
+                                </td>
                         </tr>
                         <tr>
                             <td class="auto-style5">

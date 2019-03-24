@@ -83,13 +83,14 @@ namespace Logica
         {
             DataTable comp = new DataTable();
 
-            if (idioma == "Español")
+            DataTable idi = new DataTable();
+            idi = user.traerIdioma();
+            for (int i = 0; i < idi.Rows.Count; i++)
             {
-                kIdioma = 1;
-            }
-            else if (idioma == "English")
-            {
-                kIdioma = 2;
+                if (idi.Rows[i]["nombre"].ToString().ToLower() == idioma.ToLower())
+                {
+                    kIdioma = int.Parse(idi.Rows[i]["id"].ToString());
+                }
             }
             comp = user.traerComponentes(kIdioma, constante);
             return comp;
@@ -99,13 +100,14 @@ namespace Logica
         public void mensajesTrad(string idioma, int constante)
         {
             DataTable comp = new DataTable();
-            if (idioma == "Español")
+            DataTable idi = new DataTable();
+            idi = user.traerIdioma();
+            for (int i = 0; i < idi.Rows.Count; i++)
             {
-                kIdiomaa = 1;
-            }
-            else if (idioma == "English")
-            {
-                kIdiomaa = 2;
+                if (idi.Rows[i]["nombre"].ToString().ToLower() == idioma.ToLower())
+                {
+                    kIdioma = int.Parse(idi.Rows[i]["id"].ToString());
+                }
             }
             comp = user.traerMensajes(kIdiomaa, constante);
             for (int i = 0; i < comp.Rows.Count; i++)

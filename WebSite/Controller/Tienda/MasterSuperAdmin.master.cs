@@ -49,7 +49,7 @@ public partial class View_Tienda_MasterTienda : System.Web.UI.MasterPage
 
     protected void LinkButton6_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Asignar.aspx");
+        Response.Redirect("AddIdioma.aspx");
     }
 
     protected void LinkButton3_Click(object sender, EventArgs e)

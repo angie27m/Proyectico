@@ -111,13 +111,14 @@ namespace Logica
             DataTable comp = new DataTable();
             DAOUsuario dAO = new DAOUsuario();
             Hashtable compIdioma = new Hashtable();
-            if (idioma == "Español")
+            DataTable idi = new DataTable();
+            idi = dAO.traerIdioma();
+            for (int i = 0; i < idi.Rows.Count; i++)
             {
-                kIdioma = 1;
-            }
-            else if (idioma == "English")
-            {
-                kIdioma = 2;
+                if (idi.Rows[i]["nombre"].ToString().ToLower() == idioma.ToLower())
+                {
+                    kIdioma = int.Parse(idi.Rows[i]["id"].ToString());
+                }
             }
             comp = dAO.traerComponentes(kIdioma, constante);
             for (int i = 0; i < comp.Rows.Count; i++)
@@ -131,13 +132,14 @@ namespace Logica
         public void mensajesTrad(string idiomaa, int constante)
         {
 
-            if (idiomaa == "Español")
+            DataTable idi = new DataTable();
+            idi = dAO.traerIdioma();
+            for (int i = 0; i < idi.Rows.Count; i++)
             {
-                kIdiomaa = 1;
-            }
-            else if (idiomaa == "English")
-            {
-                kIdiomaa = 2;
+                if (idi.Rows[i]["nombre"].ToString().ToLower() == idiomaa.ToLower())
+                {
+                    kIdioma = int.Parse(idi.Rows[i]["id"].ToString());
+                }
             }
             comp = dAO.traerMensajes(kIdiomaa, constante);
             for (int i = 0; i < comp.Rows.Count; i++)
