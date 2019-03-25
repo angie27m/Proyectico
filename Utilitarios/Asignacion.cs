@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 /// <summary>
 /// Descripción breve de Asignacion
 /// </summary>
+[Serializable]
+[Table ("asignacion", Schema ="tienda")]
 public class Asignacion: IEquatable<Asignacion>
 {
     public Asignacion()
@@ -15,6 +19,7 @@ public class Asignacion: IEquatable<Asignacion>
         //
     }
     private int idAsignacion;
+    private int idAsignaciones;
     private int idProducto;
     private string referencia;
     private int cantidad;
@@ -22,16 +27,26 @@ public class Asignacion: IEquatable<Asignacion>
     private string sede;
     private string fecha;
     private bool estado;
-    
 
-    public string Referencia { get => referencia; set => referencia = value; }
-    public int Cantidad { get => cantidad; set => cantidad = value; }
-    public double Talla { get => talla; set => talla = value; }
+    [Key]
+    [Column("idasignacion")]
     public int IdAsignacion { get => idAsignacion; set => idAsignacion = value; }
-    public string Sede { get => sede; set => sede = value; }
-    public string Fecha { get => fecha; set => fecha = value; }
-    public bool Estado { get => estado; set => estado = value; }
+    [Column("idasignaciones")]
+    public int IdAsignaciones { get => idAsignaciones; set => idAsignaciones = value; }    
     public int IdProducto { get => idProducto; set => idProducto = value; }
+    [Column("referencia")]
+    public string Referencia { get => referencia; set => referencia = value; }
+    [Column("cantidad")]
+    public int Cantidad { get => cantidad; set => cantidad = value; }
+    [Column("talla")]
+    public double Talla { get => talla; set => talla = value; }
+    [Column("sede")]
+    public string Sede { get => sede; set => sede = value; }
+    [Column("fecha")]
+    public string Fecha { get => fecha; set => fecha = value; }
+    [Column("estado")]
+    public bool Estado { get => estado; set => estado = value; }
+    
 
     bool IEquatable<Asignacion>.Equals(Asignacion other)
     {

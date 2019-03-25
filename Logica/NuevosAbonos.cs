@@ -173,7 +173,7 @@ namespace Logica
             return compIdioma;
         }
 
-        int kIdiomaa;
+        
         public void mensajesTrad(string idiomaa, int constante)
         {
             DataTable comp = new DataTable();
@@ -186,7 +186,7 @@ namespace Logica
                     kIdioma = int.Parse(idi.Rows[i]["id"].ToString());
                 }
             }
-            comp = dAO.traerMensajes(kIdiomaa, constante);
+            comp = dAO.traerMensajes(kIdioma, constante);
             for (int i = 0; i < comp.Rows.Count; i++)
             {
                 compIdiomaa.Add(comp.Rows[i]["msj"].ToString(), comp.Rows[i]["texto"].ToString());

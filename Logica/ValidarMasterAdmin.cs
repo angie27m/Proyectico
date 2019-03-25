@@ -42,5 +42,32 @@ namespace Logica
             }
             return compIdioma;
         }
+        public bool estado;
+        public int cant;
+        public void not_pedidos(string sede)
+        {
+            int x;
+            x = new DAOPersistencia().not_pedido(sede);
+            if(x == 0)
+            {
+                estado = false;
+                cant = x;
+            }
+            else
+            {
+                estado = true;
+                cant = x;
+            }            
+        }
+
+        public bool get_estado()
+        {
+            return estado;
+        }
+
+        public int get_cantidad()
+        {
+            return cant;
+        }
     }
 }

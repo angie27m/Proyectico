@@ -8,13 +8,15 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Logica;
+using Utilitarios;
+   
 
 public partial class View_Tienda_CRUDAdmin : System.Web.UI.Page
 {
     
     Usuario usuario = new Usuario();
-    DataTable usu = new DataTable();
-    DataTable sedess = new DataTable();
+    List<Usuario> usu = new List<Usuario>();
+    List<Sede> sedess = new List<Sede>();
     DataTable admins = new DataTable();
     string accion;
     Hashtable compIdioma = new Hashtable();
@@ -25,9 +27,7 @@ public partial class View_Tienda_CRUDAdmin : System.Web.UI.Page
         ValidacionesCrudAdmin llenarGV = new ValidacionesCrudAdmin(Session["idioma"].ToString());
         usu = llenarGV.traerAdmins();
         GV_Productos.DataSource = usu;
-        GV_Productos.DataBind();
-        sedess = llenarGV.traerSedes();
-        admins = llenarGV.traerAdmins();
+        GV_Productos.DataBind();        
         ValidacionesCrudAdmin lleanar = new ValidacionesCrudAdmin(Session["idioma"].ToString());
         DDL_Sedes.DataSource = lleanar.llenarDDLs();
         DDL_Sedes0.DataSource = lleanar.llenarDDLs();
@@ -71,6 +71,8 @@ public partial class View_Tienda_CRUDAdmin : System.Web.UI.Page
 
 
     }
+
+    
 
     protected void B_Agregar_Click(object sender, EventArgs e)
     {

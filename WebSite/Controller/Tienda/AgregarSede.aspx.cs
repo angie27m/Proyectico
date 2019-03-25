@@ -86,4 +86,10 @@ public partial class View_Tienda_AgregarSede : System.Web.UI.Page
 
         }*/
     }
+
+    protected void GV_Sedes_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        GV_Sedes.PageIndex = e.NewPageIndex;
+        llenarGV_Sedes();
+    }
 }

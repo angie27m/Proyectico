@@ -82,4 +82,17 @@ public partial class View_Tienda_MasterAdmin : System.Web.UI.MasterPage
         Response.Cache.SetNoStore();
         Response.Redirect("../Login-Rec/NuevoLogin.aspx");
     }
+
+    void not_pedidos()
+    {
+        ValidarMasterAdmin val = new ValidarMasterAdmin();
+        val.not_pedidos((Session["sede"]).ToString());
+        P_Pedido.Visible = val.estado;
+        L_Pedidos.Text = "¡Tiene "+val.get_cantidad()+" sin recibir!";
+    }
+
+    protected void LinkButton1_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("RecibirPedido.aspx");
+    }
 }

@@ -48,8 +48,7 @@ namespace Logica
             this.resultadoCiudad = resultadoCiudad;
             this.resultadoSede = resultadoSede;
             this.accion = accion;
-
-            sd = dao.traerSedes();
+            
             if (accion == "agregar")
             {
                 mensaje = hacertodoagregar();
@@ -143,8 +142,7 @@ namespace Logica
         {
             if (comandName==("Delete"))
             {
-                
-                 Convert.ToInt32(comandArgument);
+                new DAOPersistencia().EliminarSede(Convert.ToInt32(comandArgument));                 
                 
             }
         }
@@ -171,7 +169,7 @@ namespace Logica
             return compIdioma;
         }
 
-        int kIdiomaa;
+        
         public void mensajesTrad(string idiomaa, int constantea)
         {
             DataTable comp = new DataTable();
@@ -185,7 +183,7 @@ namespace Logica
                     kIdioma = int.Parse(idi.Rows[i]["id"].ToString());
                 }
             }
-            comp = dAO.traerMensajes(kIdiomaa, constantea);
+            comp = dAO.traerMensajes(kIdioma, constantea);
             for (int i = 0; i < comp.Rows.Count; i++)
             {
                 compIdiomaa.Add(comp.Rows[i]["msj"].ToString(), comp.Rows[i]["texto"].ToString());

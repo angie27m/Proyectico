@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using Logica;
+using Utilitarios;
 
 public partial class View_Tienda_CRUDVendedor : System.Web.UI.Page
 {
@@ -20,6 +13,7 @@ public partial class View_Tienda_CRUDVendedor : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         ValidacionesCRUDVendedor val = new ValidacionesCRUDVendedor(Session["idioma"].ToString());
+        string aaa = Session["sede"].ToString();
         usu = val.llenarGrilla(Session["sede"].ToString());
         GV_Usuarios.DataSource = usu;
         GV_Usuarios.DataBind();
@@ -33,7 +27,7 @@ public partial class View_Tienda_CRUDVendedor : System.Web.UI.Page
         L_Telefono.Text = compIdioma[L_Telefono.ID].ToString();
         L_Sexo.Text = compIdioma[L_Sexo.ID].ToString();
         L_Correo.Text = compIdioma[L_Correo.ID].ToString();
-        L_Rol.Text = compIdioma[L_Rol.ID].ToString();
+        
 
         L_Cedula0.Text = compIdioma[L_Cedula0.ID].ToString();
         L_Nombre0.Text = compIdioma[L_Nombre0.ID].ToString();
@@ -42,7 +36,7 @@ public partial class View_Tienda_CRUDVendedor : System.Web.UI.Page
         L_Telefono0.Text = compIdioma[L_Telefono0.ID].ToString();
         L_Sexo0.Text = compIdioma[L_Sexo0.ID].ToString();
         L_Correo0.Text = compIdioma[L_Correo0.ID].ToString();
-        L_Rol0.Text = compIdioma[L_Rol0.ID].ToString();
+        
 
         B_Agregar.Text = compIdioma[B_Agregar.ID].ToString();
         B_Actualizar.Text = compIdioma[B_Actualizar.ID].ToString();
@@ -55,20 +49,21 @@ public partial class View_Tienda_CRUDVendedor : System.Web.UI.Page
         DDL_Sexo0.Items.Add(compIdioma["DDL_Sexo0_Item0"].ToString());
         DDL_Sexo0.Items.Add(compIdioma["DDL_Sexo0_Item1"].ToString());
         
-        TB_Rol.Text = "3";
+        
     }
 
     protected void B_Agregar_Click(object sender, EventArgs e)
     {
         ValidacionesCRUDVendedor val = new ValidacionesCRUDVendedor(TB_Cedula.Text, TB_Nombre.Text, TB_Clave.Text, TB_Direccion.Text, TB_Telefono.Text, 
-                                                                     TB_Correo.Text, DDL_Sexo0.SelectedValue.ToString(), Session["sede"].ToString(), TB_Rol.Text,
+                                                                     TB_Correo.Text, DDL_Sexo0.SelectedValue.ToString(), Session["sede"].ToString(), "3",
                                                                      null, null, null, null, null,
                                                                      null, null, null, null);
 
         string a =val.hacerTodoAgregar();
 
-
+        string aaa = Session["sede"].ToString();
         usu = val.llenarGrilla(Session["sede"].ToString());
+        
         GV_Usuarios.DataSource = usu;
         GV_Usuarios.DataBind();
         DDL_Cedula.Items.Add(TB_Cedula.Text);
@@ -99,7 +94,7 @@ public partial class View_Tienda_CRUDVendedor : System.Web.UI.Page
         TB_Direccion0.Text = usuario.Direccion;
         TB_Telefono0.Text = usuario.Telefono.ToString();
         TB_Correo0.Text = usuario.Correo;
-        TB_Rol0.Text = usuario.RolId.ToString();
+        
             
     }
 
@@ -109,7 +104,7 @@ public partial class View_Tienda_CRUDVendedor : System.Web.UI.Page
         ValidacionesCRUDVendedor val = new ValidacionesCRUDVendedor(null, null, null, null, null,
                                                                      null, null, null, null,
                                                                      TB_Cedula0.Text, TB_Nombre0.Text, TB_Clave0.Text, TB_Direccion0.Text, TB_Telefono0.Text,
-                                                                     TB_Correo0.Text, DDL_Sexo.SelectedValue.ToString(), Session["sede"].ToString(), TB_Rol0.Text);
+                                                                     TB_Correo0.Text, DDL_Sexo.SelectedValue.ToString(), Session["sede"].ToString(), "3");
         string a = val.hacerTodoEditar();
         usu = val.llenarGrilla(Session["sede"].ToString());
         GV_Usuarios.DataSource = usu;

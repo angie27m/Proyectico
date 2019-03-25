@@ -33,8 +33,7 @@ public partial class View_Tienda_MasterTienda : System.Web.UI.MasterPage
         LB_CRUDProducto.Text = compIdioma[LB_CRUDProducto.ID].ToString();
         B_CerrarSesion.Text = compIdioma[B_CerrarSesion.ID].ToString();
 
-        this.notificaciones();
-        this.notificaciones2();
+        this.panel_validacion();
     }
 
     protected void LinkButton2_Click(object sender, EventArgs e)
@@ -49,7 +48,7 @@ public partial class View_Tienda_MasterTienda : System.Web.UI.MasterPage
 
     protected void LinkButton6_Click(object sender, EventArgs e)
     {
-        Response.Redirect("AddIdioma.aspx");
+        Response.Redirect("Asignar.aspx");
     }
 
     protected void LinkButton3_Click(object sender, EventArgs e)
@@ -84,31 +83,34 @@ public partial class View_Tienda_MasterTienda : System.Web.UI.MasterPage
         Response.Cache.SetNoStore();
         Response.Redirect("../Login-Rec/NuevoLogin.aspx");
     }
-    void notificaciones()
+    
+
+    protected void IR_Conflictos_Click(object sender, EventArgs e)
     {
-        DAOUsuario dAO = new DAOUsuario();
-        int a = dAO.Notificacion_Asignaciones();
-        if (a == 0)
-        {
-            L_c.Visible = false;
-        }
-        else
-        {
-            L_c.Text = Convert.ToString(a);
-        }
+        Response.Redirect("Conflictos.aspx");
     }
 
-    void notificaciones2()
+    protected void IR_Asignaciones_Click(object sender, EventArgs e)
     {
-        DAOUsuario dAO = new DAOUsuario();
-        int a = dAO.Notificacion_Conflictos();
-        if (a == 0)
-        {
-            L_c1.Visible = false;
-        }
-        else
-        {
-            L_c1.Text = Convert.ToString(a);
-        }
+        Response.Redirect("Asignar.aspx");
+    }
+
+    void panel_validacion()
+    {
+        ValidarMasterSuperAdmin validar = new ValidarMasterSuperAdmin();
+        validar.always_visible_panel();
+        Panel1.Visible = validar.estado();
+        not_conflictos(validar.cantC);
+        not_asignaciones(validar.cantA);
+    }
+
+    void not_conflictos(int c)
+    {
+        L_c.Text = c.ToString();
+    }
+
+    void not_asignaciones(int a)
+    {
+        L_c1.Text = a.ToString();
     }
 }

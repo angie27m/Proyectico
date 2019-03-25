@@ -3,10 +3,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using Utilitarios;
 
 namespace Logica
 {
@@ -17,8 +15,7 @@ namespace Logica
         String msj1, msj2, msj3, msj4, msj5, msj6, msj7, msj8, msj9;
         Hashtable compIdiomaa = new Hashtable();
         DAOUsuario dao = new DAOUsuario();
-        Usuario usuario = new Usuario();
-        DataTable usu = new DataTable();
+        Usuario usuario = new Usuario();        
 
         string nombre, cedula, clave, direccion, telefono, correo, dseleccionado, dsexo;
         string nombree, cedulae, clavee, direccione, telefonoe, correoe, dseleccionadoe, dsexoe;
@@ -59,8 +56,7 @@ namespace Logica
             this.dsexoe = dsexoe;
             this.clavee = clavee;
             this.accion = accion;
-
-            usu = dao.traerUsuariosAdmin();
+            
             if (accion == "guardar")
             {
                 mensaje = hacertodoagregar();
@@ -71,7 +67,25 @@ namespace Logica
             }
 
         }
+        /// <summary>
+        /// /Persistencia
+        /// </summary>
         
+        public List<Usuario> traerAdmins()
+        {
+            return new DAOPersistencia().traerUsuarios(1, 2);
+        }
+
+        public List<Sede> traerSedes()
+        {
+            return new DAOPersistencia().traerSedes();
+        }
+
+        public bool AgregarAdmin(Usuario usu)
+        {
+            return new DAOPersistencia().AgregarUsuario(usu);
+        }
+        /// <returns>Persistencia</returns>
         public bool validarLlenoAgregar(string cedula, string nombre, string clave, string direccion, string telefono, string correo)
         {
             if (cedula == "" || nombre == "" || clave == "" || direccion == "" || telefono == "" || correo == "")
@@ -135,24 +149,6 @@ namespace Logica
             }
         }
 
-        public bool validarCedula(string cedulallega)
-        {
-            DataTable cedula = new DataTable();
-
-            cedula = dao.traerUsuariosAdmin();
-            for (int i = 0; i < cedula.Rows.Count; i++)
-            {
-                if (cedula.Rows[i]["cedula"].ToString() == cedulallega)
-                {
-                    mensaje = msj5;
-                    return false;
-                }
-            }
-
-            return true;
-
-        }
-
         public bool validarAdmin(string sedeSeleccionada)
         {
             DataTable sede = new DataTable();
@@ -190,47 +186,47 @@ namespace Logica
                     {
                         if (validarNumerosCed(cedula))
                         {
-                            if (validarCedula(cedula))
+                            if (validarAdmin(dseleccionado))
                             {
-                                if (validarAdmin(dseleccionado))
+                                usuario.Cedula = Convert.ToInt32(cedula);
+                                if (validaralgocedula())
                                 {
-                                    usuario.Cedula = Convert.ToInt64(cedula);
-                                    if (validaralgocedula())
+                                    usuario.Nombre = nombre;
+                                    usuario.Clave = clave;
+                                    usuario.Direccion = direccion;
+                                    usuario.Telefono = long.Parse(telefono);
+                                    if (usuario.Telefono <= 0)
                                     {
-                                        usuario.Nombre = nombre;
-                                        usuario.Clave = clave;
-                                        usuario.Direccion = direccion;
-                                        usuario.Telefono = long.Parse(telefono);
-                                        if (usuario.Telefono <= 0)
-                                        {
-                                            mensaje = msj8;
-                                            return mensaje;
-                                        }
-                                        usuario.Sexo = dsexo;
-                                        usuario.Sede = dseleccionado;
-                                        usuario.Correo = correo;
-                                        usuario.Estado = 1;
-                                        usuario.Session = "hola";
-                                        usuario.RolId = 2;
-                                        usuario.LastModified = DateTime.Now;
+                                        mensaje = msj8;
+                                        return mensaje;
+                                    }
+                                    usuario.Sexo = dsexo;
+                                    usuario.Sede = dseleccionado;
+                                    usuario.Correo = correo;
+                                    usuario.Estado = 1;
+                                    usuario.Session = "hola";
+                                    usuario.RolId = 2;
+                                    usuario.LastModified = DateTime.Now;
 
-                                        dao.CrearUsuario(usuario);
+                                    if(AgregarAdmin(usuario) == true)
+                                    {
+                                        return mensaje = "Se agregó correctamente el Admin";
                                     }
                                     else
                                     {
-
+                                        return mensaje = msj5;
                                     }
-
+                                    
                                 }
                                 else
                                 {
 
                                 }
+
                             }
                             else
                             {
-                                dao.agregarUsuarioNuevamente(cedula);
-                                usu = dao.traerUsuariosAdmin();
+
                             }
                         }
                         else
@@ -322,54 +318,46 @@ namespace Logica
             }
             return iusuari;
         }
+        List<Usuario> traeEditar = new List<Usuario>();
+        
         public Usuario traerEditar(int a)
         {
+            traeEditar = this.traerAdmins();
             Usuario usuar = new Usuario();
-            for (int i = 0; i < usu.Rows.Count; i++)
+            foreach(Usuario u in traeEditar)
             {
-                if (a == Convert.ToInt32(usu.Rows[i]["cedula"]))
+                if(a == u.Cedula)
                 {
-                    usuar.Cedula = long.Parse(usu.Rows[i]["cedula"].ToString());
-                    usuar.Nombre = usu.Rows[i]["nombre"].ToString();
-                    usuar.Clave = usu.Rows[i]["clave"].ToString();
-                    usuar.Sexo = usu.Rows[i]["sexo"].ToString();
-                    usuar.Direccion = usu.Rows[i]["direccion"].ToString();
-                    usuar.Telefono = long.Parse(usu.Rows[i]["telefono"].ToString());
-                    usuar.Correo = usu.Rows[i]["correo"].ToString();
+                    usuar.Cedula = u.Cedula;
+                    usuar.Nombre = u.Nombre;
+                    usuar.Clave = u.Clave;
+                    usuar.Sexo = u.Sexo;
+                    usuar.Direccion = u.Direccion;
+                    usuar.Telefono = u.Telefono;
+                    usuar.Correo = u.Correo;
                 }
-            }
+            }           
             return usuar;
         }
+
         void eliminarUsuario(string a)
         {
             dao.eliminarUsuario(a);
         }
+
         public List<string> llenarDDLs()
         {
-            DataTable dsede = new DataTable();
+            List<Sede> listaSedes = new List<Sede>();
+            listaSedes = this.traerSedes();
             List<string> sedes = new List<string>();
-            dsede = dao.traerSedes();
             
-
-            for (int i = 0; i < dsede.Rows.Count; i++)
+            foreach(Sede s in listaSedes)
             {
-                sedes.Add(dsede.Rows[i]["nombresede"].ToString() + "-" + dsede.Rows[i]["ciudad"].ToString());
-                
-            }
+                sedes.Add(s.NombreSede + "-" + s.Ciudad);
+            }            
             return sedes;
         }
-
-        public DataTable traerAdmins()
-        {
-            DAOUsuario dao = new DAOUsuario();            
-            return dao.traerUsuariosAdmin();
-        }
-
-        public DataTable traerSedes()
-        {
-            DAOUsuario dao = new DAOUsuario();
-            return dao.traerSedes();
-        }
+        
         int kIdioma;
         public Hashtable paraIdioma(string idioma, int constante)
         {
@@ -393,7 +381,7 @@ namespace Logica
             return compIdioma;
         }
 
-        int kIdiomaa;
+        //int kIdiomaa;
         public void mensajesTrad(string idioma, int constante)
         {
             DataTable comp = new DataTable();
@@ -406,7 +394,7 @@ namespace Logica
                     kIdioma = int.Parse(idi.Rows[i]["id"].ToString());
                 }
             }
-            comp = dao.traerMensajes(kIdiomaa, constante);
+            comp = dao.traerMensajes(kIdioma, constante);
             for (int i = 0; i < comp.Rows.Count; i++)
             {
                 compIdiomaa.Add(comp.Rows[i]["msj"].ToString(), comp.Rows[i]["texto"].ToString());

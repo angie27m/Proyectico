@@ -1,6 +1,7 @@
 ﻿using Datos;
 using System;
 using System.Collections;
+using Utilitarios;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -212,7 +213,7 @@ namespace Logica
             {
                 if(usu.Rows[i]["cedula"].ToString() == cedula)
                 {
-                    usuario.Cedula = long.Parse(usu.Rows[i]["cedula"].ToString());
+                    usuario.Cedula = int.Parse(usu.Rows[i]["cedula"].ToString());
                     usuario.Nombre = usu.Rows[i]["nombre"].ToString();
                     usuario.Clave = usu.Rows[i]["clave"].ToString();
                     usuario.Direccion = usu.Rows[i]["direccion"].ToString();
@@ -318,13 +319,13 @@ namespace Logica
         public DataTable llenarGrilla(string sesion)
         {
             DataTable tabla = new DataTable();
-            usu = dao.traerUsuarios2(sesion);
+            tabla = dao.traerUsuarios2(sesion);
             return tabla;
         }
         public DataTable TraerSedes()
         {
             DataTable tabla = new DataTable();
-            usu = dao.traerSedes();
+            tabla = dao.traerSedes();
             return tabla;
         }
         public void EliminarUsu(string select)
@@ -355,7 +356,7 @@ namespace Logica
             return compIdioma;
         }
 
-        int kIdiomaa;
+        //int kIdiomaa;
         public void mensajesTrad(string idioma, int constante)
         {
             DataTable comp = new DataTable();
@@ -368,7 +369,7 @@ namespace Logica
                     kIdioma = int.Parse(idi.Rows[i]["id"].ToString());
                 }
             }
-            comp = dao.traerMensajes(kIdiomaa, constante);
+            comp = dao.traerMensajes(kIdioma, constante);
             for (int i = 0; i < comp.Rows.Count; i++)
             {
                 compIdiomaa.Add(comp.Rows[i]["msj"].ToString(), comp.Rows[i]["texto"].ToString());

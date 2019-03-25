@@ -5,7 +5,11 @@
 <!DOCTYPE html>
 
 
-
+<script type="text/javascript">
+    function OnClientCancel() {
+        alert("Ha Cancelado Cerrar Sesión.");
+    }
+</script>
 <html>
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -47,18 +51,27 @@
             background-color: #FFFFFF;
             font-size: x-small;
         }
+        .auto-style17 {
+            background-color: #FFFFCC;
+        }
     </style>
 </head>
 <body style="height: 360px">
     <form id="form2" runat="server">
     <div>
     <table class="auto-style1">
+        
         <tr>
             <td class="auto-style13" rowspan="2" runat="server">
+                <asp:ScriptManager ID="ScriptManager1" runat="server">
+                </asp:ScriptManager>
+                <br />
+                                <asp:Image ID="Image1" runat="server" Height="60px" Width="252px" ImageAlign="Top" />
+                                <ajaxToolkit:SlideShowExtender ID="Image1_SlideShowExtender" runat="server" AutoPlay="True" BehaviorID="Image1_SlideShowExtender" SlideShowServiceMethod="GetImages" SlideShowServicePath="" TargetControlID="Image1" />
+                <br />
                 <asp:Button ID="Button1" runat="server" BorderColor="#0000ff" CssClass="auto-style16" Font-Names="Engravers MT" Font-Size="Large" Text="o o o" Width="76px" BackColor="#0066FF" Height="21px" />
                 <asp:Panel ID="Panel1" runat="server" Height="426px">
-                    <asp:ScriptManager ID="ScriptManager1" runat="server">
-                    </asp:ScriptManager>
+                    
                     <strong>
                     
                     </strong>
@@ -119,13 +132,17 @@
                         <tr>
                             <td class="auto-style10">
                                 <asp:Button ID="B_CerrarSesion" runat="server" Text="CERRAR SESIÓN" OnClick="B_CerrarSesion_Click" Width="120px" />
-                                <ajaxToolkit:CollapsiblePanelExtender ID="CollapsiblePanelExtender1" runat="server" CollapseControlID="Panel1" CollapsedSize="0" ExpandedSize="250" ExpandControlID="Button1" ExpandDirection="Horizontal" />
+                                <ajaxToolkit:ConfirmButtonExtender ID="B_CerrarSesion_ConfirmButtonExtender" runat="server" BehaviorID="B_CerrarSesion_ConfirmButtonExtender" ConfirmText="¿Está seguro que desea cerrar sesión?" TargetControlID="B_CerrarSesion" OnClientCancel="OnClientCancel" />
+                                <ajaxToolkit:CollapsiblePanelExtender ID="CollapsiblePanelExtender1" runat="server" CollapseControlID="Button1" CollapsedSize="0" ExpandedSize="250" ExpandControlID="Button1" ExpandDirection="Horizontal" TargetControlID="Panel1" />
                             </td>
                         </tr>
                     </table>
                 </asp:Panel>
             </td>
             <td class="auto-style14">
+                            <asp:Panel ID="Panel2" runat="server" CssClass="auto-style17" Height="74px" Width="286px">
+                            </asp:Panel>
+                            <ajaxToolkit:AlwaysVisibleControlExtender ID="Panel2_AlwaysVisibleControlExtender" runat="server" BehaviorID="Panel2_AlwaysVisibleControlExtender" HorizontalSide="Right" TargetControlID="Panel2" VerticalSide="Bottom" />
                     <asp:Label ID="Label3" runat="server" Font-Bold="False" Font-Names="Papyrus" ForeColor="White" Text="SCA"></asp:Label>
                 </td>
         </tr>

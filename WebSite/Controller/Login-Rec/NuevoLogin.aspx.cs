@@ -33,11 +33,16 @@ public partial class View_NuevoLogin : System.Web.UI.Page
         Response.Redirect("GenerarToken.aspx");
     }
     protected void B_Login_Click(object sender, EventArgs e)
-    {            
+    {
         Loguearse log = new Loguearse(Session["idioma"].ToString());
         UUsuario user = new UUsuario();
         CoreUser a = new CoreUser(Session["idioma"].ToString());
-        user = log.loguear(TB_Cedula.Text.ToString(), TB_Clave.Text.ToString());
+        bool ss;
+
+        AjaxControlToolkit.NoBotState noBot;
+        ss = NoBot1.IsValid(out noBot);
+        L_NoEntra.Text = noBot.ToString();
+        user = log.loguear(TB_Cedula.Text.ToString(), TB_Clave.Text.ToString(), ss);
         Session["clave"] = user.Clave;
         Session["user_id"] = user.Usuario;
         Session["nombre_rol"] = user.Nombre_rol;
@@ -45,7 +50,7 @@ public partial class View_NuevoLogin : System.Web.UI.Page
         Session["nombre"] = user.Nombre;
         Session["sede"] = user.Sede;
         ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", log.get_script(), true);
-        
+
     }
  
     protected void LinkButton1_Click(object sender, EventArgs e)

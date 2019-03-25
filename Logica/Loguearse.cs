@@ -28,36 +28,44 @@ namespace Logica
         }
         string mensaje = "";
         string response = "../Login-Rec/NuevoLogin.aspx";
-        public UUsuario loguear(string cedula, string clave) {
+        public UUsuario loguear(string cedula, string clave, bool x) {
             Validaciones val = new Validaciones();
             UUsuario user = new UUsuario();
-            if (cedula != "" && clave != "")
+            if (x == true)
             {
-                if (val.validarNumeros(cedula) == true)
+                if (cedula != "" && clave != "")
                 {
-                    MAC a = new MAC();
-                    user.Usuario = cedula;
-                    user.Clave = clave;
-                    user.Ip = "192.168.1.1";
-                    //user.Ip = HttpContext.Current.Request.UserHostAddress;
-                    user.Mac = a.traerMac();
-                    DAOUsuario guardarUsuario = new DAOUsuario();
-                    DataTable data = guardarUsuario.loggin(user);
-                    user = new CoreUser(idioma).autenticar(user);
-                    mensaje = user.Mensaje;
-                    Validaciones validarRol = new Validaciones();
-                    response = validarRol.validarRol(user.Rol_id);
-                    return user;
+                    if (val.validarNumeros(cedula) == true)
+                    {
+                        MAC a = new MAC();
+                        user.Usuario = cedula;
+                        user.Clave = clave;
+                        user.Ip = "192.168.1.1";
+                        //user.Ip = HttpContext.Current.Request.UserHostAddress;
+                        user.Mac = a.traerMac();
+                        DAOUsuario guardarUsuario = new DAOUsuario();
+                        DataTable data = guardarUsuario.loggin(user);
+                        user = new CoreUser(idioma).autenticar(user);
+                        mensaje = user.Mensaje;
+                        Validaciones validarRol = new Validaciones();
+                        response = validarRol.validarRol(user.Rol_id);
+                        return user;
+                    }
+                    else
+                    {
+                        mensaje = msj1;
+                        return user;
+                    }
                 }
                 else
                 {
-                    mensaje = msj1;
-                    return user;
+                    mensaje = msj2;
                 }
             }
             else
             {
-                mensaje = msj2;
+                mensaje = "¡Parece que no eres una persona!";
+                return user;
             }
             
             return user;
@@ -85,7 +93,7 @@ namespace Logica
             return comp;
         }
 
-        int kIdiomaa=0;
+        
         public void mensajesTrad(string idioma, int constante)
         {
             DataTable comp = new DataTable();
@@ -95,10 +103,10 @@ namespace Logica
             {
                 if (idi.Rows[i]["nombre"].ToString().ToLower() == idioma.ToLower())
                 {
-                    kIdiomaa = int.Parse(idi.Rows[i]["id"].ToString());
+                    kIdioma = int.Parse(idi.Rows[i]["id"].ToString());
                 }
             }
-            comp = dao.traerMensajes(kIdiomaa, constante);
+            comp = dao.traerMensajes(kIdioma, constante);
             for (int i = 0; i < comp.Rows.Count; i++)
             {
                 compIdiomaa.Add(comp.Rows[i]["msj"].ToString(), comp.Rows[i]["texto"].ToString());

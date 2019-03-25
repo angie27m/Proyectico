@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="~/Controller/Login-Rec/NuevoLogin.aspx.cs" Inherits="View_NuevoLogin" %>
 
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxToolkit" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -76,6 +78,9 @@
                         <asp:Label ID="L_Contrasena" runat="server" CssClass="auto-style9" ForeColor="White" Text="Ingresa Contraseña"></asp:Label>
                         <br />
                         <asp:TextBox ID="TB_Clave" runat="server" TextMode="Password"></asp:TextBox>
+                        <ajaxToolkit:NoBot ID="NoBot1" runat="server" CutoffMaximumInstances="2" />
+                        <asp:ScriptManager ID="ScriptManager1" runat="server">
+                        </asp:ScriptManager>
                         <br />
                         <asp:Label ID="L_NoEntra" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
                         <br />

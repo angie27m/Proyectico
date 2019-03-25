@@ -57,7 +57,7 @@
                 <tr>
                     <td>&nbsp;</td>
                     <td>
-                        <asp:GridView ID="GV_Sedes" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowCommand="GridView1_RowCommand" OnRowDeleting="GridView1_RowDeleting" OnRowDataBound="GV_Sedes_RowDataBound">
+                        <asp:GridView ID="GV_Sedes" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowCommand="GridView1_RowCommand" OnRowDeleting="GridView1_RowDeleting" OnRowDataBound="GV_Sedes_RowDataBound" OnPageIndexChanging="GV_Sedes_PageIndexChanging" PageSize="6">
                             <Columns>
                                 <asp:TemplateField ShowHeader="False" HeaderText="Eliminar">
                                     <ItemTemplate>
@@ -81,16 +81,7 @@
                         </asp:GridView>
                     </td>
                     <td>
-                        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ObjectDataSource1">
-                            <Columns>
-                                <asp:BoundField DataField="IdSede" HeaderText="IdSede" SortExpression="IdSede" />
-                                <asp:BoundField DataField="NombreSede" HeaderText="NombreSede" SortExpression="NombreSede" />
-                                <asp:BoundField DataField="Ciudad" HeaderText="Ciudad" SortExpression="Ciudad" />
-                                <asp:BoundField DataField="Direccion" HeaderText="Direccion" SortExpression="Direccion" />
-                            </Columns>
-                        </asp:GridView>
-                        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="traerSedes" TypeName="Logica.AgregarSede0"></asp:ObjectDataSource>
-                    </td>
+                        &nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>

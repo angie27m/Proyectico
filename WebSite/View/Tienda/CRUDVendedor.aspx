@@ -1,9 +1,38 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Tienda/MasterAdmin.master" AutoEventWireup="true" CodeFile="~/Controller/Tienda/CRUDVendedor.aspx.cs" Inherits="View_Tienda_CRUDVendedor" %>
 
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxToolkit" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <style type="text/css">
         .auto-style16 {
             width: 100%;
+        }
+        .indicadorenlinea {
+            border-style: solid;
+            border-width: 2px;
+            width: 190px;
+            padding: 2px;
+        }
+        .muy_debil{
+            background-color:gray;
+            color:white;
+
+        }
+        .debil{
+            background-color:red;
+            color:white;
+        }
+        .media{
+            background-color:orange;
+            color:white;
+        }
+        .fuerte{
+            background-color:yellow;
+            color:white;
+        }
+        .irrompible{
+            background-color:green;
+            color:white;
         }
         .auto-style17 {
             width: 82px;
@@ -36,6 +65,21 @@
             </td>
             <td>
                 <asp:TextBox ID="TB_Clave" runat="server" MaxLength="15"></asp:TextBox>
+                <ajaxToolkit:PasswordStrength 
+                    StrengthIndicatorType="BarIndicator"
+                    ID="TB_Clave_PasswordStrength" 
+                    runat="server"
+                    TextStrengthDescriptionStyles="muy_debil;debil;media;fuerte;irrompible"
+                    BehaviorID="TB_Clave_PasswordStrength" 
+                    BarBorderCssClass="indicadorenlinea"
+                    MinimumLowerCaseCharacters="2" 
+                    TargetControlID="TB_Clave" 
+                    MinimumNumericCharacters="2" 
+                    MinimumSymbolCharacters="1" 
+                    MinimumUpperCaseCharacters="1" 
+                    PreferredPasswordLength="5"
+                    PrefixText="Seguridad: " >
+                </ajaxToolkit:PasswordStrength>
             </td>
             <td>&nbsp;</td>
         </tr>
@@ -78,11 +122,9 @@
         </tr>
         <tr>
             <td class="auto-style17">
-                <asp:Label ID="L_Rol" runat="server" Text="Rol:"></asp:Label>
-            </td>
+                &nbsp;</td>
             <td>
-                <asp:TextBox ID="TB_Rol" runat="server" Enabled="False"></asp:TextBox>
-            </td>
+                &nbsp;</td>
             <td>&nbsp;</td>
         </tr>
         <tr>
@@ -275,11 +317,9 @@
         </tr>
         <tr>
             <td class="auto-style17">
-                <asp:Label ID="L_Rol0" runat="server" Text="Rol:"></asp:Label>
-            </td>
+                &nbsp;</td>
             <td>
-                <asp:TextBox ID="TB_Rol0" runat="server"></asp:TextBox>
-            </td>
+                &nbsp;</td>
             <td>&nbsp;</td>
         </tr>
         <tr>

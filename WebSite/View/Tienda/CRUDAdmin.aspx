@@ -1,9 +1,38 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Tienda/MasterSuperAdmin.master" AutoEventWireup="true" CodeFile="~/Controller/Tienda/CRUDAdmin.aspx.cs" Inherits="View_Tienda_CRUDAdmin" %>
 
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxToolkit" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <style type="text/css">
         .auto-style11 {
             width: 78px;
+        }
+        .indicadorenlinea {
+            border-style: solid;
+            border-width: 2px;
+            width: 190px;
+            padding: 2px;
+        }
+        .muy_debil{
+            background-color:gray;
+            color:white;
+
+        }
+        .debil{
+            background-color:red;
+            color:white;
+        }
+        .media{
+            background-color:orange;
+            color:white;
+        }
+        .fuerte{
+            background-color:yellow;
+            color:white;
+        }
+        .irrompible{
+            background-color:green;
+            color:white;
         }
         .auto-style12 {
             width: 35px;
@@ -52,6 +81,21 @@
             </td>
             <td class="auto-style13">
                 <asp:TextBox ID="TB_Clave" runat="server" MaxLength="15"></asp:TextBox>
+                <ajaxToolkit:PasswordStrength
+                    StrengthIndicatorType="BarIndicator"
+                    ID="TB_Clave_PasswordStrength" 
+                    runat="server"
+                    TextStrengthDescriptionStyles="muy_debil;debil;media;fuerte;irrompible"
+                    BehaviorID="TB_Clave_PasswordStrength" 
+                    BarBorderCssClass="indicadorenlinea"
+                    MinimumLowerCaseCharacters="2" 
+                    TargetControlID="TB_Clave" 
+                    MinimumNumericCharacters="2" 
+                    MinimumSymbolCharacters="1" 
+                    MinimumUpperCaseCharacters="1" 
+                    PreferredPasswordLength="5"
+                    PrefixText="Seguridad: " >
+                </ajaxToolkit:PasswordStrength>
             </td>
             <td class="auto-style12">&nbsp;</td>
             <td>&nbsp;</td>
@@ -142,42 +186,42 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Cedula">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("cedula") %>'></asp:TextBox>
+                                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Cedula") %>'></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("cedula") %>'></asp:Label>
+                                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("Cedula") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Nombre">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("nombre") %>'></asp:TextBox>
+                                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Nombre") %>'></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("nombre") %>'></asp:Label>
+                                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Clave">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("clave") %>'></asp:TextBox>
+                                    <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("Clave") %>'></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("clave") %>'></asp:Label>
+                                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("Clave") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Sede">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox7" runat="server" Text='<%# Bind("sede") %>'></asp:TextBox>
+                                    <asp:TextBox ID="TextBox7" runat="server" Text='<%# Bind("Sede") %>'></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="Label7" runat="server" Text='<%# Bind("sede") %>'></asp:Label>
+                                    <asp:Label ID="Label7" runat="server" Text='<%# Bind("Sede") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Correo">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox8" runat="server" Text='<%# Bind("correo") %>'></asp:TextBox>
+                                    <asp:TextBox ID="TextBox8" runat="server" Text='<%# Bind("Correo") %>'></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="Label8" runat="server" Text='<%# Bind("correo") %>'></asp:Label>
+                                    <asp:Label ID="Label8" runat="server" Text='<%# Bind("Correo") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

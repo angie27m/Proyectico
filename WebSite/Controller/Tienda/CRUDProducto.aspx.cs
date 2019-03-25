@@ -1,4 +1,4 @@
-﻿    using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -9,12 +9,13 @@ using System.Web.UI.WebControls;
 using Datos;
 using Logica;
 
-public partial class View_Tienda_CRUDProducto : System.Web.UI.Page
+
+public partial class View_Tienda_CRUDProduc : System.Web.UI.Page
 {
     String compara
     {
-        get { return Session["compara"] as String ; }
-        set { Session["compara"] = value;  }
+        get { return Session["compara"] as String; }
+        set { Session["compara"] = value; }
     }
     String id
     {
@@ -22,7 +23,7 @@ public partial class View_Tienda_CRUDProducto : System.Web.UI.Page
         set { Session["idproducto"] = value; }
     }
     Hashtable compIdioma = new Hashtable();
-    
+
     protected void Page_Load(object sender, EventArgs e)
     {
         ValidacionesCRUDProducto val = new ValidacionesCRUDProducto(Session["idioma"].ToString());
@@ -71,6 +72,10 @@ public partial class View_Tienda_CRUDProducto : System.Web.UI.Page
 
     protected void GV_Productos_RowCommand(object sender, GridViewCommandEventArgs e)
     {
+        if (e.CommandName.Equals("Select"))
+        {
+            TabContainer1.ActiveTabIndex = 2; TabContainer1.ActiveTabIndex = 2;
+        }
         Session["idproducto"] = null;
         ValidacionesCRUDProducto validaciones = new ValidacionesCRUDProducto(Session["idioma"].ToString());
         validaciones.RowCommand(e.CommandName, e.CommandArgument.ToString(), Convert.ToInt32(e.CommandArgument));
@@ -80,11 +85,23 @@ public partial class View_Tienda_CRUDProducto : System.Web.UI.Page
 
     void Seleccionar_Producto(Producto producto)
     {        
+        
         Session["compara"] = Convert.ToString(producto.Cantidad);
         TB_EditarReferencia.Text = producto.Referencia;
         TB_EditarCantidad.Text = Convert.ToString(producto.Cantidad);
         TB_EditarPrecio.Text = Convert.ToString(producto.Precio);
-        DDL_EditarTallas.SelectedValue = Convert.ToString(producto.Talla);
+        try
+        {
+            string t = producto.Talla.ToString();
+            string[] commandArgs = t.ToString().Split(new char[] { ',' });
+            string t1 = commandArgs[0] + "." + commandArgs[1];
+            DDL_EditarTallas.SelectedValue = t1;
+        }
+        catch (Exception e)
+        {
+            string x = producto.Talla.ToString();
+            DDL_EditarTallas.SelectedValue = x;
+        }        
         B_EditarProducto.Enabled = true;
         B_Cancelar.Enabled = true;
     }
