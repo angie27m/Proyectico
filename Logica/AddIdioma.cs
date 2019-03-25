@@ -18,7 +18,7 @@ namespace Logica
         DataTable sinTraducirComp = new DataTable();
         int sesionIdiomaAct, sesionIdiomaEsc;
         int soloComp = 0, ultimoComp = 0, ultimoIdi=0;
-        int soloMen = 0, ultimoMen = 0;
+        int ultimoMen = 0;
         DataTable mensajes = new DataTable();
         DataTable paraultimoMen = new DataTable();
         DataTable sinTraducirMen = new DataTable();
@@ -63,16 +63,16 @@ namespace Logica
                     }
                     sinTraducirComp = dao.traerTodosComponentesUnIdioma(sesionIdiomaEsc);
                     componentes = dao.traerTodosComponentesUnIdioma(sesionIdiomaAct);
-                    HacerListaSinTrad();
                     sinTraducirMen = dao.traerTodosMensajesUnIdioma(sesionIdiomaEsc);
                     mensajes = dao.traerTodosMensajesUnIdioma(sesionIdiomaAct);
+                    HacerListaSinTrad();
                 }
                 else
                 {
                     componentes = dao.traerTodosComponentesUnIdioma(sesionIdiomaAct);
                     mensajes = dao.traerTodosMensajesUnIdioma(sesionIdiomaAct);
-                    paraultimoMen = dao.traerUltimoIDMen();
-                    ultimoMen = int.Parse(paraultimoMen.Rows[0]["id"].ToString());
+                    
+                    
                     paraultimoIdi = dao.traerUltimoIDIdi();
                     ultimoIdi = int.Parse(paraultimoIdi.Rows[0]["id"].ToString()) + 1;
                     dao.crearIdioma(ultimoIdi, idioma, terminacion);
@@ -83,6 +83,12 @@ namespace Logica
                         paraultimoComp = dao.traerUltimoIDComp();
                         ultimoComp = int.Parse(paraultimoComp.Rows[0]["id"].ToString());
                         dao.crearComponente(ultimoComp + 1, int.Parse(componentes.Rows[i]["formulario_id"].ToString()), ultimoIdi, componentes.Rows[i]["control"].ToString());
+                    }
+                    for(int i = 0; i < mensajes.Rows.Count; i++)
+                    {
+                        paraultimoMen = dao.traerUltimoIDMen();
+                        ultimoMen = int.Parse(paraultimoMen.Rows[0]["id"].ToString()) + 1;
+                        dao.crearMensaje(ultimoMen, mensajes.Rows[i]["nombre"].ToString(), int.Parse(mensajes.Rows[i]["msj"].ToString()), ultimoIdi, int.Parse(mensajes.Rows[i]["clase"].ToString()));
                     }
                 }
             }
@@ -98,9 +104,13 @@ namespace Logica
             {
                 if (sinTraducirComp.Rows[i]["texto"].ToString() == "")
                 {
-                    //compoSinTrad.Add(sinTraducir.Rows[i]["control"].ToString());
                     compoAct.Add(componentes.Rows[i]["texto"].ToString());
                 }
+
+            }
+            for(int i = 0; i < mensajes.Rows.Count; i++)
+            {
+
             }
         }
         public List<string> getListaSinTrad()

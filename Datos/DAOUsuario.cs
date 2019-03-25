@@ -2827,6 +2827,35 @@ namespace Datos
             }
             return ul;
         }
+        public void crearMensaje(int id, string nombre, int msj, int idioma, int clase)
+        {
+            DataTable a = new DataTable();
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+            try
+            {
+                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("traduccion.f_crear_mensajes_nuevo", conection);
+                dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+                dataAdapter.SelectCommand.Parameters.Add("_nombre", NpgsqlDbType.Varchar).Value = nombre;
+                dataAdapter.SelectCommand.Parameters.Add("_msj", NpgsqlDbType.Integer).Value = msj;
+                dataAdapter.SelectCommand.Parameters.Add("_idioma", NpgsqlDbType.Integer).Value = idioma;
+                dataAdapter.SelectCommand.Parameters.Add("_texto", NpgsqlDbType.Varchar).Value = "";
+                dataAdapter.SelectCommand.Parameters.Add("_clase", NpgsqlDbType.Integer).Value = clase;
+                conection.Open();
+                dataAdapter.Fill(a);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
+            }
+        }
     }
 
 
