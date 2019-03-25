@@ -9,11 +9,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Logica;
 using Utilitarios;
-   
 
-public partial class View_Tienda_CRUDAdmin : System.Web.UI.Page
+public partial class View_Tienda_CRUDAdmi : System.Web.UI.Page
 {
-    
     Usuario usuario = new Usuario();
     List<Usuario> usu = new List<Usuario>();
     List<Sede> sedess = new List<Sede>();
@@ -27,7 +25,7 @@ public partial class View_Tienda_CRUDAdmin : System.Web.UI.Page
         ValidacionesCrudAdmin llenarGV = new ValidacionesCrudAdmin(Session["idioma"].ToString());
         usu = llenarGV.traerAdmins();
         GV_Productos.DataSource = usu;
-        GV_Productos.DataBind();        
+        GV_Productos.DataBind();
         ValidacionesCrudAdmin lleanar = new ValidacionesCrudAdmin(Session["idioma"].ToString());
         DDL_Sedes.DataSource = lleanar.llenarDDLs();
         DDL_Sedes0.DataSource = lleanar.llenarDDLs();
@@ -72,7 +70,7 @@ public partial class View_Tienda_CRUDAdmin : System.Web.UI.Page
 
     }
 
-    
+
 
     protected void B_Agregar_Click(object sender, EventArgs e)
     {
@@ -101,7 +99,7 @@ public partial class View_Tienda_CRUDAdmin : System.Web.UI.Page
         GV_Productos.HeaderRow.Cells[5].Text = compIdioma["GV_Productos_Column5"].ToString();
         GV_Productos.HeaderRow.Cells[6].Text = compIdioma["GV_Productos_Column6"].ToString();
     }
-    
+
     protected void B_Actualizar_Click(object sender, EventArgs e)
     {
         accion = "editar";
@@ -125,11 +123,11 @@ public partial class View_Tienda_CRUDAdmin : System.Web.UI.Page
         TB_Direccion0.Enabled = x;
         TB_Telefono0.Enabled = x;
         TB_Correo0.Enabled = x;
-        DDL_Sexo0.Enabled = x;        
+        DDL_Sexo0.Enabled = x;
         B_Actualizar.Enabled = x;
         B_Cancelar0.Enabled = x;
     }
-     
+
     void limpiarEditar()
     {
         TB_Cedula0.Text = "";
@@ -155,18 +153,18 @@ public partial class View_Tienda_CRUDAdmin : System.Web.UI.Page
         GV_Productos.PageIndex = e.NewPageIndex;
         this.llenarGV_Usuarios();
     }
-    
+
     protected void GV_Productos_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         ValidacionesCrudAdmin val = new ValidacionesCrudAdmin(TB_Nombre.Text.ToString(), TB_Cedula.Text.ToString(), TB_Correo.Text.ToString(), TB_Direccion.Text.ToString(),
                                                              TB_Telefono.Text.ToString(), DDL_Sedes.SelectedValue.ToString(), DDL_Sexo.SelectedValue.ToString(), TB_Clave.Text.ToString(),
                                                              TB_Nombre0.Text.ToString(), TB_Cedula0.Text.ToString(), TB_Correo0.Text.ToString(), TB_Direccion0.Text.ToString(),
                                                              TB_Telefono0.Text.ToString(), DDL_Sedes0.SelectedValue, DDL_Sexo0.SelectedValue, TB_Clave0.Text.ToString(), accion);
-            Usuario u = new Usuario();
-            u = val.paracomandogrid(e.CommandName, e.CommandArgument.ToString());
-            traerEditar(u);
-            this.estadoEditar(true);
-            this.llenarGV_Usuarios();
+        Usuario u = new Usuario();
+        u = val.paracomandogrid(e.CommandName, e.CommandArgument.ToString());
+        traerEditar(u);
+        this.estadoEditar(true);
+        this.llenarGV_Usuarios();
     }
 
     void llenarGV_Usuarios()
@@ -197,7 +195,7 @@ public partial class View_Tienda_CRUDAdmin : System.Web.UI.Page
 
     public void traerEditar(Usuario u)
     {
-        
+
         TB_Cedula0.Text = u.Cedula.ToString();
         TB_Nombre0.Text = u.Nombre;
         TB_Clave0.Text = u.Clave;
@@ -206,7 +204,7 @@ public partial class View_Tienda_CRUDAdmin : System.Web.UI.Page
         TB_Telefono0.Text = u.Telefono.ToString();
         TB_Correo0.Text = u.Correo;
     }
-    
+
 
     protected void GV_Productos_SelectedIndexChanged(object sender, EventArgs e)
     {

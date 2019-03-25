@@ -42,7 +42,7 @@ public partial class View_NuevoLogin : System.Web.UI.Page
         AjaxControlToolkit.NoBotState noBot;
         ss = NoBot1.IsValid(out noBot);
         L_NoEntra.Text = noBot.ToString();
-        user = log.loguear(TB_Cedula.Text.ToString(), TB_Clave.Text.ToString(), ss);
+        user = log.loguear(TB_Cedula.Text.ToString(), TB_Clave.Text.ToString(), true);
         Session["clave"] = user.Clave;
         Session["user_id"] = user.Usuario;
         Session["nombre_rol"] = user.Nombre_rol;

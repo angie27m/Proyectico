@@ -54,6 +54,13 @@
             text-align: center;
             height: 30px;
         }
+        .auto-style30 {
+            font-size: medium;
+        }
+        .auto-style31 {
+            width: 59px;
+            font-size: medium;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -61,43 +68,44 @@
         <tr>
             <td class="auto-style22"></td>
             <td class="auto-style23">
-                <asp:Label ID="L_Ventas" runat="server" Text="Ventas"></asp:Label>
+                <asp:Label ID="L_Ventas" runat="server" Text="Ventas" CssClass="auto-style30"></asp:Label>
             </td>
             <td class="auto-style24"></td>
             <td class="auto-style25"></td>
         </tr>
         <tr>
-            <td class="auto-style21">&nbsp;</td>
+            <td class="auto-style21"><span class="auto-style30"></td>
             <td class="auto-style17">
                 <asp:Label ID="L_Filtrar" runat="server" Text="Filtrar"></asp:Label>
+                </span>
             </td>
             <td class="auto-style20">
-                <asp:DropDownList ID="DDL_Filtrar" runat="server" Height="16px">
+                <asp:DropDownList ID="DDL_Filtrar" runat="server" Height="16px" CssClass="auto-style30">
                     <asp:ListItem Value="1">Ver Todas</asp:ListItem>
                     <asp:ListItem Value="2">Fecha</asp:ListItem>
                     <asp:ListItem Value="3">Top 10</asp:ListItem>
                 </asp:DropDownList>
             </td>
             <td class="auto-style10">
-                <asp:Button ID="B_Ir" runat="server" OnClick="B_Ir_Click" Text="IR" style="width: 26px" />
+                <asp:Button ID="B_Ir" runat="server" OnClick="B_Ir_Click" Text="IR" style="width: 26px" CssClass="auto-style30" />
             </td>
         </tr>
         <tr>
             <td class="auto-style26">
-                <asp:Label ID="L_Entre" runat="server" Text="Entre:" Visible="False"></asp:Label>
+                <asp:Label ID="L_Entre" runat="server" Text="Entre:" Visible="False" CssClass="auto-style30"></asp:Label>
             </td>
             <td class="auto-style27">
-                <asp:TextBox ID="TB_Fecha1" runat="server" TextMode="Date" Visible="False"></asp:TextBox>
-                <asp:Label ID="L_Y" runat="server" Text="y" Visible="False"></asp:Label>
+                <asp:TextBox ID="TB_Fecha1" runat="server" TextMode="Date" Visible="False" CssClass="auto-style30"></asp:TextBox>
+                <asp:Label ID="L_Y" runat="server" Text="y" Visible="False" CssClass="auto-style30"></asp:Label>
             </td>
             <td class="auto-style28">
-                <asp:TextBox ID="TB_Fecha2" runat="server" Visible="False" TextMode="Date"></asp:TextBox>
+                <asp:TextBox ID="TB_Fecha2" runat="server" Visible="False" TextMode="Date" CssClass="auto-style30"></asp:TextBox>
             </td>
             <td class="auto-style29">
-                <asp:Button ID="B_Buscar" runat="server" OnClick="B_Buscar_Click" Text="Buscar" Visible="False" />
+                <asp:Button ID="B_Buscar" runat="server" OnClick="B_Buscar_Click" Text="Buscar" Visible="False" CssClass="auto-style30" />
             </td>
         </tr>
-        <tr>
+        <tr class="auto-style30">
             <td class="auto-style21">&nbsp;</td>
             <td class="auto-style10" colspan="2">
                 <asp:Label ID="L_Tabla" runat="server" Text="Tabla de ventas"></asp:Label>
@@ -105,9 +113,9 @@
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td class="auto-style21">&nbsp;</td>
+            <td class="auto-style31">&nbsp;</td>
             <td colspan="2">
-                <asp:GridView ID="GV_Ventas" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnPageIndexChanging="GV_Ventas_PageIndexChanging" PageSize="5" Width="287px" EmptyDataText="No hay ventas para mostrar.">
+                <asp:GridView ID="GV_Ventas" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnPageIndexChanging="GV_Ventas_PageIndexChanging" PageSize="5" Width="287px" EmptyDataText="No hay ventas para mostrar." CssClass="auto-style30">
                     <Columns>
                         <asp:TemplateField HeaderText="Cédula Cliente">
                             <EditItemTemplate>
@@ -145,7 +153,7 @@
                     <SortedDescendingHeaderStyle BackColor="#002876" />
                 </asp:GridView>
             </td>
-            <td>&nbsp;</td>
+            <td class="auto-style30">&nbsp;</td>
         </tr>
         <tr>
             <td class="auto-style21">&nbsp;</td>
@@ -167,4 +175,3 @@
         </tr>
     </table>
 </asp:Content>
-

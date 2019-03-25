@@ -121,6 +121,7 @@
                         </tr>
                     </table>
                 </asp:Panel>
+                <ajaxToolkit:RoundedCornersExtender ID="Panel1_RoundedCornersExtender" runat="server" BehaviorID="Panel1_RoundedCornersExtender" BorderColor="Blue" Color="Blue" Radius="10" TargetControlID="Panel1" />
                 <ajaxToolkit:CollapsiblePanelExtender ID="Panel1_CollapsiblePanelExtender" runat="server" BehaviorID="Panel1_CollapsiblePanelExtender" CollapseControlID="B_Menu" CollapsedSize="0" ExpandControlID="B_Menu" ExpandDirection="Horizontal" ExpandedSize="250" TargetControlID="Panel1">
                 </ajaxToolkit:CollapsiblePanelExtender>
             </td>
@@ -132,6 +133,7 @@
                             <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">IR</asp:LinkButton>
                         </div>
                     </asp:Panel>
+                    <ajaxToolkit:RoundedCornersExtender ID="P_Pedido_RoundedCornersExtender" runat="server" BehaviorID="P_Pedido_RoundedCornersExtender" BorderColor="DarkGray" Color="DarkGray" TargetControlID="P_Pedido" />
                     <ajaxToolkit:AlwaysVisibleControlExtender ID="P_Pedido_AlwaysVisibleControlExtender" runat="server" BehaviorID="Panel2_AlwaysVisibleControlExtender" HorizontalSide="Right" TargetControlID="P_Pedido" VerticalSide="Middle" />
                 </td>
         </tr>

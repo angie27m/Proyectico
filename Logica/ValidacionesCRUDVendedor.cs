@@ -22,6 +22,11 @@ namespace Logica
         string mensaje, msj1, msj2, msj3, msj4, msj5, msj6, msj7, msj8;
         Hashtable compIdiomaa = new Hashtable();
 
+        public ValidacionesCRUDVendedor()
+        {
+
+        }
+
         public ValidacionesCRUDVendedor(string idioma)
         {
             mensajesTrad(idioma, 17);

@@ -55,24 +55,17 @@
         .auto-style45 {
             height: 26px;
         }
+        .auto-style46 {
+            font-size: medium;
+        }
+        .auto-style47 {
+            text-align: center;
+            font-size: medium;
+        }
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <table class="auto-style16">
-        <tr>
-            <td class="auto-style36"></td>
-            <td class="auto-style19"><br />
-            </td>
-            <td class="auto-style37">
-                &nbsp;</td>
-        </tr>
-        <tr>
-            <td class="auto-style20">&nbsp;</td>
-            <td class="auto-style18">
-                <br />
-            </td>
-            <td>&nbsp;</td>
-        </tr>
         <tr>
             <td class="auto-style20">&nbsp;</td>
             <td class="auto-style18">&nbsp;</td>
@@ -80,10 +73,10 @@
         </tr>
         <tr>
             <td class="auto-style20">
-                <asp:Label ID="L_Abonos" runat="server" Text="Abonos Pendientes"></asp:Label>
+                <asp:Label ID="L_Abonos" runat="server" Text="Abonos Pendientes" CssClass="auto-style46"></asp:Label>
             </td>
             <td class="auto-style18">
-                    <asp:GridView ID="GV_AbonosPendientes" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" EmptyDataText="No hay abonos pendientes." CssClass="auto-style10" PageSize="5" Width="353px" OnRowCommand="GV_AbonosPendientes_RowCommand" OnPageIndexChanging="GV_AbonosPendientes_PageIndexChanging" OnRowDataBound="GV_AbonosPendientes_RowDataBound">
+                    <asp:GridView ID="GV_AbonosPendientes" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" EmptyDataText="No hay abonos pendientes." CssClass="auto-style47" PageSize="5" Width="353px" OnRowCommand="GV_AbonosPendientes_RowCommand" OnPageIndexChanging="GV_AbonosPendientes_PageIndexChanging" OnRowDataBound="GV_AbonosPendientes_RowDataBound">
                         <Columns>
                             
                             <asp:TemplateField ShowHeader="False">
@@ -131,25 +124,25 @@
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td colspan="3">&nbsp;</td>
+            <td colspan="3" class="auto-style46">&nbsp;</td>
         </tr>
         <tr>
             <td class="auto-style17">
-                <asp:Label ID="L_Deuda" runat="server" Text="Deuda de este abono:"></asp:Label>
+                <asp:Label ID="L_Deuda" runat="server" Text="Deuda de este abono:" CssClass="auto-style46"></asp:Label>
             </td>
             <td class="auto-style39">
-                <asp:TextBox ID="TB_PrecioDeuda" runat="server" Enabled="False"></asp:TextBox>
-                <br />
+                <asp:TextBox ID="TB_PrecioDeuda" runat="server" Enabled="False" CssClass="auto-style46"></asp:TextBox>
+                <br class="auto-style46" />
             </td>
             <td>
                 &nbsp;</td>
         </tr>
         <tr>
             <td class="auto-style43">
-                <asp:Label ID="L_Valor" runat="server" Text="Valor a Abonar"></asp:Label>
+                <asp:Label ID="L_Valor" runat="server" Text="Valor a Abonar" CssClass="auto-style46"></asp:Label>
             </td>
             <td class="auto-style44">
-                <asp:TextBox ID="TB_PagoActual" runat="server"></asp:TextBox>
+                <asp:TextBox ID="TB_PagoActual" runat="server" CssClass="auto-style46"></asp:TextBox>
             </td>
             <td class="auto-style45"></td>
         </tr>
@@ -157,10 +150,9 @@
             <td class="auto-style40">
             </td>
             <td class="auto-style41">
-                <asp:Button ID="B_Pagar" runat="server" Text="Pagar" OnClick="B_AgregarProducto_Click" />
+                <asp:Button ID="B_Pagar" runat="server" Text="Pagar" OnClick="B_AgregarProducto_Click" CssClass="auto-style46" />
             </td>
             <td class="auto-style42"></td>
         </tr>
         </table>
 </asp:Content>
-

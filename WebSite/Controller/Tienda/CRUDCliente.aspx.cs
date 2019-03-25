@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using Logica;
 
-
-public partial class View_Tienda_CRUDCliente : System.Web.UI.Page
+public partial class View_Tienda_CRUDClient : System.Web.UI.Page
 {
     int CONSTANTE = 10;
     Cliente cliente = new Cliente();
@@ -33,7 +28,7 @@ public partial class View_Tienda_CRUDCliente : System.Web.UI.Page
         L_Apellido0.Text = compIdioma[L_Apellido0.ID].ToString();
         L_Direccion.Text = compIdioma[L_Direccion.ID].ToString();
         L_Direccion0.Text = compIdioma[L_Direccion0.ID].ToString();
-        L_Telefono.Text  = compIdioma[L_Telefono.ID].ToString();
+        L_Telefono.Text = compIdioma[L_Telefono.ID].ToString();
         L_Telefono0.Text = compIdioma[L_Telefono0.ID].ToString();
         L_Sexo.Text = compIdioma[L_Sexo.ID].ToString();
         L_Sexo0.Text = compIdioma[L_Sexo0.ID].ToString();
@@ -63,7 +58,7 @@ public partial class View_Tienda_CRUDCliente : System.Web.UI.Page
         accion = "guardar";
         ValidacionesCrudCliente val = new ValidacionesCrudCliente(TB_Nombre.Text.ToString(), TB_Cedula.Text.ToString(), TB_Apellido.Text.ToString(), TB_Direccion.Text.ToString(),
                                                                   TB_Telefono.Text.ToString(), DDL_Sexo.SelectedValue.ToString(), TB_Nombre0.ToString(), TB_Cedula0.ToString(),
-                                                                  TB_Apellido0.ToString(), TB_Direccion0.ToString(), TB_Telefono0.ToString(),DDL_Sexo0.SelectedValue.ToString(), 
+                                                                  TB_Apellido0.ToString(), TB_Direccion0.ToString(), TB_Telefono0.ToString(), DDL_Sexo0.SelectedValue.ToString(),
                                                                  accion, resultadoNombre, resultadoApellido);
 
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -115,8 +110,8 @@ public partial class View_Tienda_CRUDCliente : System.Web.UI.Page
         GV_Clientes.HeaderRow.Cells[5].Text = compIdioma["GV_Clientes_Column5"].ToString();
         GV_Clientes.HeaderRow.Cells[6].Text = compIdioma["GV_Clientes_Column6"].ToString();
         GV_Clientes.HeaderRow.Cells[7].Text = compIdioma["GV_Clientes_Column7"].ToString();
-    } 
-        
+    }
+
     protected void GV_Clientes_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         ValidacionesCrudCliente valCli = new ValidacionesCrudCliente(Session["idioma"].ToString());

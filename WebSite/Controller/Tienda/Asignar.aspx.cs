@@ -2,19 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using Datos;
 using Logica;
 
-public partial class View_Tienda_Asignar : System.Web.UI.Page
+public partial class View_Tienda_Asigna : System.Web.UI.Page
 {
     DataTable a = new DataTable();
     int CONSTANTE = 5;
     Hashtable compIdioma = new Hashtable();
-    
+
     protected void Page_Load(object sender, EventArgs e)
     {
         Asignaciones pen = new Asignaciones(Session["idioma"].ToString());
@@ -39,13 +35,13 @@ public partial class View_Tienda_Asignar : System.Web.UI.Page
         GV_Pendientes.HeaderRow.Cells[0].Text = compIdioma["GV_Pendientes_Column0"].ToString();
         GV_Pendientes.HeaderRow.Cells[1].Text = compIdioma["GV_Pendientes_Column1"].ToString();
         B_Validar.Text = compIdioma[B_Validar.ID].ToString();
-        GV_Asignar_Sin_Pedido.HeaderRow.Cells[1].Text =compIdioma["GV_Asignar_Sin_Pedido_Column1"].ToString();
+        GV_Asignar_Sin_Pedido.HeaderRow.Cells[1].Text = compIdioma["GV_Asignar_Sin_Pedido_Column1"].ToString();
         B_Asignar1.Text = compIdioma[B_Asignar1.ID].ToString();
         L_Talla1.Text = compIdioma[L_Talla1.ID].ToString();
         B_Agregar.Text = compIdioma[B_Agregar.ID].ToString();
         L_Sede.Text = compIdioma[L_Sede.ID].ToString();
         B_Asignar.Text = compIdioma[B_Asignar.ID].ToString();
-       
+
     }
 
     String compara
@@ -104,7 +100,7 @@ public partial class View_Tienda_Asignar : System.Web.UI.Page
     protected void GV_Pedido_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         Asignaciones row = new Asignaciones(Session["idioma"].ToString());
-        Session["idPed"] = Convert.ToString(e.CommandArgument);        
+        Session["idPed"] = Convert.ToString(e.CommandArgument);
         GV_Pedidos.DataSource = row.Row_Command(e.CommandName.ToString(), e.CommandArgument.ToString());
         GV_Pedidos.DataBind();
         Session["source"] = row.Row_Command(e.CommandName.ToString(), e.CommandArgument.ToString());
@@ -119,7 +115,7 @@ public partial class View_Tienda_Asignar : System.Web.UI.Page
         Asignaciones validar = new Asignaciones(Session["idioma"].ToString());
         string ff = Convert.ToString(Session["sedePedido"]);
         DataTable ss = Session["source"] as DataTable;
-        validar.ValidarPedidos(ss, Session["asignacion2"] as List<Asignacion>, Session["sedePedido"].ToString(),Convert.ToString(Session["idPed"]));
+        validar.ValidarPedidos(ss, Session["asignacion2"] as List<Asignacion>, Session["sedePedido"].ToString(), Convert.ToString(Session["idPed"]));
         Session["entregado"] = validar.GetEntregado();
         Session["asignacion2"] = validar.GetPedidos();
         Session["idproducto"] = validar.GetId();
@@ -158,7 +154,7 @@ public partial class View_Tienda_Asignar : System.Web.UI.Page
 
     protected void B_Agregar_Click(object sender, EventArgs e)
     {
-        Asignaciones agregar = new Asignaciones(Session["idioma"].ToString());       
+        Asignaciones agregar = new Asignaciones(Session["idioma"].ToString());
 #pragma warning disable CS0618 // Type or member is obsolete
         RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('" + agregar.listaEnviar(Session["asignacion3"] as List<Producto>, L_Referencia.Text, L_Talla.Text, TB_Cantidad.Text) + "');</script>");
 #pragma warning restore CS0618 // Type or member is obsolete    

@@ -1,20 +1,43 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Tienda/MasterVendedor.master" AutoEventWireup="true" CodeFile="~/Controller/Tienda/BodegaVendedor.aspx.cs" Inherits="View_Tienda_BodegaVendedor" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <style type="text/css">
+        .auto-style18 {
+            width: 6px;
+        }
+        .auto-style19 {
+            width: 13px;
+        }
+        .auto-style20 {
+            width: 261px;
+        }
+        .auto-style21 {
+            background-color: #FFFFFF;
+            font-size: x-small;
+            width: 612px;
+        }
+        .auto-style22 {
+            margin-left: 0px;
+        }
+        .auto-style23 {
+            background-color: #FFFFCC;
+            width: 41px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-        <table class="auto-style16">
+        <table class="auto-style21">
         <tr>
-            <td class="auto-style17">&nbsp;</td>
+            <td class="auto-style23">&nbsp;</td>
             <td class="auto-style18">
                 <asp:Label ID="L_Inventario" runat="server" Text="Inventario de la Sede"></asp:Label>
             </td>
-            <td>&nbsp;</td>
+            <td class="auto-style20">&nbsp;</td>
         </tr>
         <tr>
-            <td class="auto-style17">&nbsp;</td>
-            <td class="auto-style18">
-                <asp:GridView ID="GV_Bodega_Vendedor" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" AllowPaging="True" OnPageIndexChanging="GV_Inventario_PageIndexChanging" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" PageSize="5">
+            <td class="auto-style23">&nbsp;</td>
+            <td colspan="2">
+                <asp:GridView ID="GV_Bodega_Vendedor" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" AllowPaging="True" OnPageIndexChanging="GV_Inventario_PageIndexChanging" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" PageSize="5" CssClass="auto-style22" Width="385px">
                     <Columns>
                         <asp:TemplateField HeaderText="#">
                             <EditItemTemplate>
@@ -39,13 +62,11 @@
                     <SortedDescendingHeaderStyle BackColor="#002876" />
                 </asp:GridView>
             </td>
-            <td>&nbsp;</td>
         </tr>
         <tr>
-            <td class="auto-style17">&nbsp;</td>
+            <td class="auto-style23">&nbsp;</td>
             <td class="auto-style19">&nbsp;</td>
-            <td>&nbsp;</td>
+            <td class="auto-style20">&nbsp;</td>
         </tr>
     </table>
 </asp:Content>
-

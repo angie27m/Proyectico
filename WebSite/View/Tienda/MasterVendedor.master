@@ -138,6 +138,7 @@
                         </tr>
                     </table>
                 </asp:Panel>
+                <ajaxToolkit:RoundedCornersExtender ID="Panel1_RoundedCornersExtender" runat="server" BehaviorID="Panel1_RoundedCornersExtender" BorderColor="Blue" Color="Blue" Radius="10" TargetControlID="Panel1" />
             </td>
             <td class="auto-style14">
                             <asp:Panel ID="Panel2" runat="server" CssClass="auto-style17" Height="74px" Width="286px">

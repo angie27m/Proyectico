@@ -34,6 +34,7 @@
         }
         .auto-style35 {
             margin-bottom: 17px;
+            font-size: medium;
         }
         .auto-style36 {
             height: 104px;
@@ -45,6 +46,7 @@
         }
         .auto-style39 {
             height: 16px;
+            font-size: medium;
         }
         .auto-style40 {
             text-align: left;
@@ -70,44 +72,58 @@
             height: 104px;
             text-align: center;
         }
+        .auto-style47 {
+            font-size: medium;
+        }
+        .auto-style48 {
+            width: 139px;
+            font-size: medium;
+        }
+        .auto-style49 {
+            text-align: center;
+            width: 139px;
+            font-size: medium;
+        }
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <table class="auto-style16">
         <tr>
             <td class="auto-style44">
-                <asp:Label ID="L_BuscarCliente" runat="server" Text="Buscar Cliente:"></asp:Label>
+                <asp:Label ID="L_BuscarCliente" runat="server" Text="Buscar Cliente:" CssClass="auto-style47"></asp:Label>
             </td>
             <td class="auto-style18">
-                <asp:TextBox ID="TB_BuscarCliente" runat="server" MaxLength="7"></asp:TextBox>
-                <br />
+                <asp:TextBox ID="TB_BuscarCliente" runat="server" MaxLength="7" CssClass="auto-style47"></asp:TextBox>
+                <br class="auto-style47" />
             </td>
             <td class="auto-style21">
-                <asp:Button ID="B_BuscarCliente" runat="server" Text="Buscar" OnClick="B_BuscarCliente_Click" style="width: 61px" />
+                <asp:Button ID="B_BuscarCliente" runat="server" Text="Buscar" OnClick="B_BuscarCliente_Click" style="width: 61px" CssClass="auto-style47" />
             </td>
             <td class="auto-style17"></td>
         </tr>
         <tr>
             <td class="auto-style10">
+                <span class="auto-style47">
                 <asp:Label ID="L_Cliente" runat="server" Text="Cliente:"></asp:Label>
             </td>
             <td class="auto-style19">
                 <asp:Label ID="L_InfoCliente" runat="server"></asp:Label>
                 <br />
-                <asp:TextBox ID="TB_Nombre" runat="server" Enabled="False"></asp:TextBox>
-                <br />
-                <asp:TextBox ID="TB_Apellido" runat="server" Enabled="False"></asp:TextBox>
+                </span>
+                <asp:TextBox ID="TB_Nombre" runat="server" Enabled="False" CssClass="auto-style47"></asp:TextBox>
+                <br class="auto-style47" />
+                <asp:TextBox ID="TB_Apellido" runat="server" Enabled="False" CssClass="auto-style47"></asp:TextBox>
             </td>
-            <td class="auto-style22">
+            <td class="auto-style49">
                 &nbsp;</td>
             <td>&nbsp;</td>
         </tr>
         <tr>
             <td class="auto-style10">
-                <asp:Label ID="L_Productos" runat="server" Text="Productos:"></asp:Label>
+                <asp:Label ID="L_Productos" runat="server" Text="Productos:" CssClass="auto-style47"></asp:Label>
             </td>
             <td class="auto-style19">
-                <asp:GridView ID="GV_Productos" runat="server" AllowPaging="True" AutoGenerateColumns="False" PageSize="5" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnPageIndexChanging="GV_Productos_PageIndexChanging" OnSelectedIndexChanged="GV_VentaPedido_SelectedIndexChanged" OnRowCommand="GV_VentaPedido_RowCommand" OnRowDataBound="GV_Productos_RowDataBound">
+                <asp:GridView ID="GV_Productos" runat="server" AllowPaging="True" AutoGenerateColumns="False" PageSize="5" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnPageIndexChanging="GV_Productos_PageIndexChanging" OnSelectedIndexChanged="GV_VentaPedido_SelectedIndexChanged" OnRowCommand="GV_VentaPedido_RowCommand" OnRowDataBound="GV_Productos_RowDataBound" CssClass="auto-style47">
                     <Columns>
                         <asp:TemplateField HeaderText="Referencia">
                             <EditItemTemplate>
@@ -156,17 +172,18 @@
                     <SortedDescendingHeaderStyle BackColor="#002876" />
                 </asp:GridView>
             </td>
-            <td class="auto-style23">
+            <td class="auto-style48">
                 &nbsp;</td>
             <td>&nbsp;</td>
         </tr>
         <tr>
             <td class="auto-style41"></td>
             <td class="auto-style40">
-                &nbsp;
-&nbsp;<table class="auto-style16">
+                <span class="auto-style47">&nbsp;
+&nbsp;</span><table class="auto-style16">
                     <tr>
                         <td>
+                            <span class="auto-style47">
                             <asp:Label ID="L_Referencia" runat="server" Text="Referencia"></asp:Label>
                             <br />
                             <asp:Label ID="LRef" runat="server"></asp:Label>
@@ -179,14 +196,15 @@
                         <td>
                             <asp:Label ID="L_Cantidad" runat="server" Text="Cantidad"></asp:Label>
                             <br />
-                            <asp:TextBox ID="TB_Cantidad" runat="server"></asp:TextBox>
+                            </span>
+                            <asp:TextBox ID="TB_Cantidad" runat="server" CssClass="auto-style47"></asp:TextBox>
                         </td>
                     </tr>
                 </table>
             </td>
             <td class="auto-style42">
-                <asp:Button ID="B_Seleccionar" runat="server" OnClick="B_Seleccionar_Click" Text="Agregar a la venta" Enabled="False" />
-                <br />
+                <asp:Button ID="B_Seleccionar" runat="server" OnClick="B_Seleccionar_Click" Text="Agregar a la venta" Enabled="False" CssClass="auto-style47" />
+                <br class="auto-style47" />
             </td>
             <td class="auto-style43"></td>
         </tr>
@@ -261,17 +279,17 @@
                 </asp:GridView>
             </td>
             <td class="auto-style38">
-                <asp:Button ID="B_Facturar" runat="server" Text="Facturar" OnClick="B_Facturar_Click" style="height: 26px" />
-                <asp:Button ID="B_Abono" runat="server" OnClick="B_Abono_Click" Text="Abono" />
+                <asp:Button ID="B_Facturar" runat="server" Text="Facturar" OnClick="B_Facturar_Click" style="height: 26px" CssClass="auto-style47" />
+                <asp:Button ID="B_Abono" runat="server" OnClick="B_Abono_Click" Text="Abono" CssClass="auto-style47" />
             </td>
             <td class="auto-style36"></td>
         </tr>
         <tr>
-            <td>&nbsp;</td>
+            <td><span class="auto-style47"></td>
             <td class="auto-style19">
-                &nbsp;</td>
+                </span></td>
             <td class="auto-style22">
-                <asp:Button ID="B_Cancelar" runat="server" Text="Cancelar" OnClick="B_Cancelar_Click" />
+                <asp:Button ID="B_Cancelar" runat="server" Text="Cancelar" OnClick="B_Cancelar_Click" CssClass="auto-style47" />
             </td>
             <td>&nbsp;</td>
         </tr>
@@ -286,4 +304,3 @@
         </tr>
     </table>
 </asp:Content>
-

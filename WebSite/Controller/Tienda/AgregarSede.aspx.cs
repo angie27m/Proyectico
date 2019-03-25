@@ -1,4 +1,5 @@
 ﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Web.UI.WebControls;
@@ -6,14 +7,14 @@ using Logica;
 using Utilitarios;
 using System.Collections;
 
-public partial class View_Tienda_AgregarSede : System.Web.UI.Page
+public partial class View_Tienda_AgregarSed : System.Web.UI.Page
 {
-    string accion;    
+    string accion;
     Sede sedes = new Sede();
     List<Sede> sd = new List<Sede>();
     int CONSTANTE = 4;
     Hashtable compIdioma = new Hashtable();
-   
+
     protected void Page_Load(object sender, EventArgs e)
     {
         /*AgregarSede0 a = new AgregarSede0(Session["idioma"].ToString());*/
@@ -42,8 +43,11 @@ public partial class View_Tienda_AgregarSede : System.Web.UI.Page
         this.llenarGV_Sedes();
         string a = agr.traerMensaje();
 #pragma warning disable CS0618 // Type or member is obsolete
-        RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('"+a+"');</script>");
+        RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('" + a + "');</script>");
 #pragma warning restore CS0618 // Type or member is obsolete
+        TB_Ciudad.Text = "";
+        TB_Direccion.Text = "";
+        TB_Nombre_Sede.Text = "";
 
     }
 
@@ -67,7 +71,7 @@ public partial class View_Tienda_AgregarSede : System.Web.UI.Page
         elimi.eliminarSede(e.CommandName, int.Parse(e.CommandArgument.ToString()));
         llenarGV_Sedes();
     }
-    
+
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
 

@@ -26,6 +26,9 @@
         text-align: center;
         width: 95px;
     }
+        .auto-style23 {
+            font-size: medium;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -33,7 +36,7 @@
         <tr>
             <td>&nbsp;</td>
             <td class="auto-style17">
-                <asp:Label ID="L_Factura" runat="server" Text="Facturas"></asp:Label>
+                <asp:Label ID="L_Factura" runat="server" Text="Facturas" CssClass="auto-style23"></asp:Label>
             </td>
             <td class="auto-style19">&nbsp;</td>
             <td class="auto-style21">&nbsp;</td>
@@ -42,7 +45,7 @@
         <tr>
             <td>&nbsp;</td>
             <td class="auto-style18">
-                <asp:Label ID="L_NumVenta" runat="server" Text="Numero de la Venta:"></asp:Label>
+                <asp:Label ID="L_NumVenta" runat="server" Text="Numero de la Venta:" CssClass="auto-style23"></asp:Label>
             </td>
             <td class="auto-style20">
                 <asp:TextBox ID="TB_Factura" runat="server" MaxLength="6"></asp:TextBox>
@@ -124,4 +127,3 @@
         </tr>
     </table>
 </asp:Content>
-
